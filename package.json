@@ -1,5 +1,5 @@
 {
-	"name": "Code",
+	"name": "code",
 	"version": "0.10.1",
 	"electronVersion": "0.34.1",
 	"author": {
@@ -24,6 +24,7 @@
 		"iconv-lite": "^0.4.13",
 		"sax": "^1.1.1",
 		"semver": "^4.2.0",
+		"vinyl-fs": "^2.2.1",
 		"vscode-textmate": "^1.0.5",
 		"winreg": "0.0.12",
 		"yauzl": "^2.3.1"
