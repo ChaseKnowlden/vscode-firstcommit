@@ -1,5 +1,5 @@
 {
-  "name": "Code",
+  "name": "code",
   "version": "0.10.1",
   "lockfileVersion": 1,
   "requires": true,
@@ -7215,9 +7215,7 @@
     "nan": {
       "version": "2.14.0",
       "resolved": "https://registry.npmjs.org/nan/-/nan-2.14.0.tgz",
-      "integrity": "sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==",
-      "dev": true,
-      "optional": true
+      "integrity": "sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg=="
     },
     "nanomatch": {
       "version": "1.2.13",
@@ -7447,6 +7445,14 @@
       "integrity": "sha1-WDsap3WWHUsROsF9nFC6753Xa9E=",
       "requires": {
         "wrappy": "1"
+      }
+    },
+    "oniguruma": {
+      "version": "5.1.2",
+      "resolved": "https://registry.npmjs.org/oniguruma/-/oniguruma-5.1.2.tgz",
+      "integrity": "sha1-ZH7k3ttyn/ud2RpOe/O4dc9eHbw=",
+      "requires": {
+        "nan": "^2.0.9"
       }
     },
     "optimist": {
@@ -9243,34 +9249,12 @@
       }
     },
     "vscode-textmate": {
-      "version": "1.0.5",
-      "resolved": "https://registry.npmjs.org/vscode-textmate/-/vscode-textmate-1.0.5.tgz",
-      "integrity": "sha1-lgVvJamtToWa8okuXc7e9dF5cbg=",
+      "version": "1.0.6",
+      "resolved": "https://registry.npmjs.org/vscode-textmate/-/vscode-textmate-1.0.6.tgz",
+      "integrity": "sha1-PBht/+GRTZVFyP08IkksI7dHmU4=",
       "requires": {
         "oniguruma": "^5.1.1",
         "sax": "^1.1.1"
-      },
-      "dependencies": {
-        "oniguruma": {
-          "version": "5.1.1",
-          "resolved": "https://registry.npmjs.org/oniguruma/-/oniguruma-5.1.1.tgz",
-          "integrity": "sha1-2RUKbY3gN85bqqJ3CpN8IAG7dYI=",
-          "requires": {
-            "nan": "^2.0.9"
-          },
-          "dependencies": {
-            "nan": {
-              "version": "2.0.9",
-              "resolved": "https://registry.npmjs.org/nan/-/nan-2.0.9.tgz",
-              "integrity": "sha1-0Cp3D0Z3iELM65ThfKsx/8cjSgU="
-            }
-          }
-        },
-        "sax": {
-          "version": "1.1.2",
-          "resolved": "https://registry.npmjs.org/sax/-/sax-1.1.2.tgz",
-          "integrity": "sha1-aScf/RUXVr/D9KX2ziyE6p8B+jc="
-        }
       }
     },
     "which": {

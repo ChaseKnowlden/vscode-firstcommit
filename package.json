@@ -25,7 +25,7 @@
 		"sax": "^1.1.1",
 		"semver": "^4.2.0",
 		"vinyl-fs": "^2.2.1",
-		"vscode-textmate": "^1.0.5",
+		"vscode-textmate": "^1.0.6",
 		"winreg": "0.0.12",
 		"yauzl": "^2.3.1"
 	},
