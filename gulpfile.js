@@ -158,9 +158,9 @@ gulp.task('test', function () {
 });
 
 gulp.task('mixin', function () {
-	var url = process.env['VSCODE_MIXIN'];
+	var repo = process.env['VSCODE_MIXIN_REPO'];
 
-	if (!url) {
+	if (!repo) {
 		return;
 	}
 
