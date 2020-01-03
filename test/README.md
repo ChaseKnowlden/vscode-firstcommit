@@ -7,13 +7,13 @@ tests.
 
 If you wish to run the tests from a terminal, from the `vscode` folder run:
 
-	cd vscode
-	mocha
+OSX and Linux
 
-Alternatively, you can run them from any browser. Simply open the URL provided by the following command:
+	./test/run.sh
 
-	cd vscode
-	mocha --browser
+Windows
+
+	test\run
 
 ## Debug
 
