@@ -221,6 +221,12 @@ function packageTask(platform, arch, opts) {
 
 		var resources = gulp.src('resources/*', { base: '.' });
 
+		if (platform === 'win32') {
+			result = es.merge(result, gulp.src(product.icons.file.ico, { base: '.' }));
+		} else if (platform === 'linux') {
+			result = es.merge(result, gulp.src(product.icons.application.png, { base: '.' }));
+		}
+
 		var all = es.merge(
 			api,
 			packageJson,
@@ -238,14 +244,9 @@ function packageTask(platform, arch, opts) {
 			.pipe(filter(['**', '!LICENSE', '!version']));
 
 		if (platform === 'win32') {
-			result = es.merge(result, gulp.src('resources/win/bin/**', { base: 'resources/win' }));
+			result = es.merge(result, gulp.src('resources/win32/bin/**', { base: 'resources/win32' }));
 		}
 
-		if (platform === 'win32') {
-			result = es.merge(result, gulp.src(product.icons.file.ico, { base: '.' }));
-		} else if (platform === 'linux') {
-			result = es.merge(result, gulp.src(product.icons.application.png, { base: '.' }));
-		}
 
 		return result.pipe(opts.zip ? electron.zfsdest(destination + '.zip') : symdest(destination));
 	};
