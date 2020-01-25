@@ -108,9 +108,10 @@ The **extension host** process runs code implemented by a plugin. To debug exten
 * Launch the development version of Code with the following command line option:
 
 ``` bash
-		# OSX and Linux
 		./tools/run.sh --remote-debugging-port=9222
-		# Windows
+```
+Windows
+``` bash
 		tools\run --remote-debugging-port=9222
 ```
 
