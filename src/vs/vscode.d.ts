@@ -4,6 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 
 /*
+	This is the Type Definition file for VSCode version 0.10.1
+*/
+
+/*
 	- comments are marked like this '<<< comment >>>'
 
 	some global comments:
@@ -43,19 +47,19 @@ declare namespace vscode {
 	 */
 	export interface Command {
 		/**
-		 * Title of the command, like __save__
+		 * Title of the command, like __save__.
 		 */
 		title: string;
 
 		/**
-		 * The identifier of the actual command handler
-		 * @see commands.registerCommand
+		 * The identifier of the actual command handler.
+		 * @see [[#commands.registerCommand]].
 		 */
 		command: string;
 
 		/**
 		 * Arguments that the command-handler should be
-		 * invoked with
+		 * invoked with.
 		 */
 		arguments?: any[];
 	}
@@ -63,13 +67,13 @@ declare namespace vscode {
 	/**
 	 * Represents a line of text such as a line of source code.
 	 *
-	 * TextLine objects are __immutable__. That means that when a [document](#TextDocument) changes
+	 * TextLine objects are __immutable__. When a [document](#TextDocument) changes,
 	 * previsouly retrieved lines will not represent the latest state.
 	 */
 	export interface TextLine {
 
 		/**
-		 * The zero-base line number.
+		 * The zero-based line number.
 		 *
 		 * @readonly
 		 */
@@ -106,7 +110,7 @@ declare namespace vscode {
 
 		/**
 		 * Whether this line is whitespace only, shorthand
-		 * for `#firstNonWhitespaceCharacterIndex === #text.length`
+		 * for [[#TextLine.firstNonWhitespaceCharacterIndex]] === [[#TextLine.text.length]]
 		 *
 		 * @readonly
 		 */
@@ -130,7 +134,7 @@ declare namespace vscode {
 
 		/**
 		 * The file system path of the associated resource. Shorthand
-		 * notation for `#uri.fsPath`. Independent of the uri scheme.
+		 * notation for [[#TextDocument.uri.fsPath]]. Independent of the uri scheme.
 		 *
 		 * @readonly
 		 */
@@ -185,8 +189,8 @@ declare namespace vscode {
 		 * that the returned object is *not* live and changes to the
 		 * document are not reflected.
 		 *
-		 * @param line A line number in (0, lineCount[
-		 * @return A line.
+		 * @param line A line number in [0, lineCount).
+		 * @return A [line](#TextLine).
 		 */
 		lineAt(line: number): TextLine;
 
@@ -195,19 +199,29 @@ declare namespace vscode {
 		 * that the returned object is *not* live and changes to the
 		 * document are not reflected.
 		 *
-		 * @see ()[#lineAt]
-		 * @param position A position which line is in (0, lineCount[
-		 * @return A line.
+		 * The position will be [adjusted](#TextDocument.validatePosition).
+		 *
+		 * @see [[#TextDocument.lineAt]]
+		 * @param position A position.
+		 * @return A [line](#TextLine).
 		 */
 		lineAt(position: Position): TextLine;
 
 		/**
 		 * Converts the position to a zero-based offset.
+		 *
+		 * The position will be [adjusted](#TextDocument.validatePosition).
+		 *
+		 * @param position A position.
+		 * @return A valid zero-based offset.
 		 */
 		offsetAt(position: Position): number;
 
 		/**
 		 * Converts a zero-based offset to a position.
+		 *
+		 * @param offset A zero-based offset.
+		 * @return A valid [position](#Position).
 		 */
 		positionAt(offset: number): Position;
 
@@ -216,6 +230,7 @@ declare namespace vscode {
 		 * a range. The range will be [adjusted](#TextDocument.validateRange).
 		 *
 		 * @param range Include only the text included by the range.
+		 * @return The text inside the provided range or the entire text.
 		 */
 		getText(range?: Range): string;
 
@@ -223,6 +238,8 @@ declare namespace vscode {
 		 * Get a word-range at the given position. By default words are defined by
 		 * common separators, like space, -, _, etc. In addition, per languge custom
 		 * [word definitions](#LanguageConfiguration.wordPattern) can be defined.
+		 *
+		 * The position will be [adjusted](#TextDocument.validatePosition).
 		 *
 		 * @param position A position.
 		 * @return A range spanning a word, or `undefined`.
@@ -248,7 +265,7 @@ declare namespace vscode {
 
 	/**
 	 * Represents a line and character position, such as
-	 * the position of the caret.
+	 * the position of the cursor.
 	 *
 	 * Position objects are __immutable__. Use the [with](#Position.with) or
 	 * [translate](#Position.translate) methods to derive new positions
@@ -269,49 +286,68 @@ declare namespace vscode {
 		character: number;
 
 		/**
-		 * @param line
-		 * @param character
+		 * @param line A zero-based line value.
+		 * @param character A zero-based character value.
 		 */
 		constructor(line: number, character: number);
 
 		/**
+		 * Check if `other` is before this position.
+		 *
+		 * @param other A position.
 		 * @return `true` if position is on a smaller line
-		 * or smaller character.
+		 * or on the same line on a smaller character.
 		 */
 		isBefore(other: Position): boolean;
 
 		/**
-		 * @return `true` if position is on a smaller or equal line
-		 * or smaller or equal character.
+		 * Check if `other` is before or equal to this position.
+		 *
+		 * @param other A position.
+		 * @return `true` if position is on a smaller line
+		 * or on the same line on a smaller or equal character.
 		 */
 		isBeforeOrEqual(other: Position): boolean;
 
 		/**
+		 * Check if `other` is after this position.
+		 *
+		 * @param other A position.
 		 * @return `true` if position is on a greater line
-		 * or greater character.
+		 * or on the same line on a greater character.
 		 */
 		isAfter(other: Position): boolean;
 
 		/**
-		 * @return `true` if position is on a greater or equal line
-		 * or greater or equal character.
+		 * Check if `other` is after or equal to this position.
+		 *
+		 * @param other A position.
+		 * @return `true` if position is on a greater line
+		 * or on the same line on a greater or equal character.
 		 */
 		isAfterOrEqual(other: Position): boolean;
 
 		/**
+		 * Check if `other` equals this position.
+		 *
+		 * @param other A position.
 		 * @return `true` if the line and character of the given position are equal to
 		 * the line and character of this position.
 		 */
 		isEqual(other: Position): boolean;
 
 		/**
-		 * @return A number smaller zero if this position is before the given position,
-		 * a number greater zero if this position is after the given position, or zero when
+		 * Compare this to `other`.
+		 *
+		 * @param other A position.
+		 * @return A number smaller than zero if this position is before the given position,
+		 * a number greater than zero if this position is after the given position, or zero when
 		 * this and the given position are equal.
 		 */
 		compareTo(other: Position): number;
 
 		/**
+		 * Create a new position relative to this position.
 		 *
 		 * @param lineDelta Delta value for the line value, default is `0`.
 		 * @param characterDelta Delta value for the character value, default is `0`.
@@ -321,15 +357,18 @@ declare namespace vscode {
 		translate(lineDelta?: number, characterDelta?: number): Position;
 
 		/**
+		 * Create a new position derived from this position.
+		 *
 		 * @param line Value that should be used as line value, default is the [existing value](#Position.line)
 		 * @param character Value that should be used as character value, default is the [existing value](#Position.character)
-		 * @return A position which line and character are replaced by the given values.
+		 * @return A position where line and character are replaced by the given values.
 		 */
 		with(line?: number, character?: number): Position;
 	}
 
 	/**
 	 * A range represents an ordered pair of two positions.
+	 * It is guaranteed that [start](#Range.start).isBeforeOrEqual([end](#Range.end))
 	 *
 	 * Range objects are __immutable__. Use the [with](#Range.with),
 	 * [intersection](#Range.intersection), or [union](#Range.union) methods
@@ -338,20 +377,20 @@ declare namespace vscode {
 	export class Range {
 
 		/**
-		 * The start position is before or equal to end.
+		 * The start position. It is before or equal to [end](#Range.end).
 		 * @readonly
 		 */
 		start: Position;
 
 		/**
-		 * The end position which is after or equal to start.
+		 * The end position. it is after or equal to [start](#Range.start).
 		 * @readonly
 		 */
 		end: Position;
 
 		/**
 		 * Create a new range from two position. If `start` is not
-		 * before or equal to `end` the values will be swapped.
+		 * before or equal to `end`, the values will be swapped.
 		 *
 		 * @param start A position.
 		 * @param end A position.
@@ -359,13 +398,13 @@ declare namespace vscode {
 		constructor(start: Position, end: Position);
 
 		/**
-		 * Create a new range from four number. The parameters
-		 * might be swapped so that start is before or equal to end.
+		 * Create a new range from number coordinates. It is a shorter equivalent of
+		 * using `new Range(new Position(startLine, startCharacter), new Position(endLine, endCharacter))`
 		 *
-		 * @param startLine A positive number or zero.
-		 * @param startCharacter A positive number or zero.
-		 * @param endLine A positive number or zero.
-		 * @param endCharacter A positive number or zero.
+		 * @param startLine A zero-based line value.
+		 * @param startCharacter A zero-based character value.
+		 * @param endLine A zero-based line value.
+		 * @param endCharacter A zero-based character value.
 		 */
 		constructor(startLine: number, startCharacter: number, endLine: number, endCharacter: number);
 
@@ -375,34 +414,49 @@ declare namespace vscode {
 		isEmpty: boolean;
 
 		/**
-		 * `true` iff `start` and `end` are on the same line.
+		 * `true` iff `start.line` and `end.line` are equal.
 		 */
 		isSingleLine: boolean;
 
 		/**
+		 * Check if a position or a range is contained in this range.
+		 *
+		 * @param positionOrRange A position or a range.
 		 * @return `true` iff the position or range is inside or equal
 		 * to this range.
 		 */
 		contains(positionOrRange: Position | Range): boolean;
 
 		/**
+		 * Check if `other` equals this range.
+		 *
+		 * @param other A range.
 		 * @return `true` when start and end are [equal](#Position.isEqual) to
 		 * start and end of this range
 		 */
 		isEqual(other: Range): boolean;
 
 		/**
+		 * Intersect `range` with this range and returns a new range or `undefined`
+		 * if the ranges have no overlap.
+		 *
+		 * @param range A range.
 		 * @return A range of the greater start and smaller end positions. Will
 		 * return undefined when there is no overlap.
 		 */
 		intersection(range: Range): Range;
 
 		/**
+		 * Compute the union of `other` with this range.
+		 *
+		 * @param other A range.
 		 * @return A range of smaller start position and the greater end position.
 		 */
 		union(other: Range): Range;
 
 		/**
+		 * Create a new range derived from this range.
+		 *
 		 * @param start A position that should be used as start. The default value is the [current start](#Range.start).
 		 * @param end A position that should be used as end. The default value is the [current end](#Range.end).
 		 * @return A range derived from this range with the given start and end position.
@@ -418,13 +472,15 @@ declare namespace vscode {
 
 		/**
 		 * The position at which the selection starts.
+		 * This position might be before or after [active](#Selection.active)
 		 */
-		anchor: Position;	// <<< is anchor always start or end of the underlying range? if yes, why not just use a boolean 'reversed'? >>>
+		anchor: Position;
 
 		/**
 		 * The position of the cursor.
+		 * This position might be before or after [anchor](#Selection.anchor)
 		 */
-		active: Position;	//<<< why is the cursor position called 'active' and not 'cursor'? the comment should explain this >>>
+		active: Position;
 
 		/**
 		 * Create a selection from two postions.
@@ -432,39 +488,58 @@ declare namespace vscode {
 		constructor(anchor: Position, active: Position);
 
 		/**
-		 * Create a selection from four points.
+		 * Create a selection from four coordinates.
 		 *
-		 * @param anchorLine A positive number or zero.
-		 * @param anchorCharacter A positive number or zero.
-		 * @param activeLine A positive number or zero.
-		 * @param activeCharacter A positive number or zero.
+		 * @param anchorLine A zero-based line value.
+		 * @param anchorCharacter A zero-based character value.
+		 * @param activeLine A zero-based line value.
+		 * @param activeCharacter A zero-based character value.
 		 */
 		constructor(anchorLine: number, anchorCharacter: number, activeLine: number, activeCharacter: number);
+
 		/**
-		 * A selection is reversed if the [anchor](#Selection.anchor)
-		 * is equal to [start](#Selection.start) and if [active](#Selection.active)
-		 * is equal to [end](#Selection.end)
+		 * A selection is reversed if [active](#Selection.active).isBefore([anchor](#Selection.anchor))
 		 */
 		isReversed: boolean;
 	}
 
+	/**
+	 * Represents an event describing the change in a [text editor's selections](#TextEditor.selections).
+	 */
 	export interface TextEditorSelectionChangeEvent {
+		/**
+		 * The [text editor](#TextEditor) for which the selections have changed.
+		 */
 		textEditor: TextEditor;
+		/**
+		 * The new value for the [text editor's selections](#TextEditor.selections).
+		 */
 		selections: Selection[];
 	}
 
+	/**
+	 * Represents an event describing the change in a [text editor's options](#TextEditor.options).
+	 */
 	export interface TextEditorOptionsChangeEvent {
+		/**
+		 * The [text editor](#TextEditor) for which the options have changed.
+		 */
 		textEditor: TextEditor;
+		/**
+		 * The new value for the [text editor's options](#TextEditor.options).
+		 */
 		options: TextEditorOptions;
 	}
 
 	/**
-	 *
+	 * Represents a [text editor](#TextEditor)'s [options](#TextEditor.options).
 	 */
 	export interface TextEditorOptions {
 
 		/**
-		 * The size in spaces a tab takes
+		 * The size in spaces a tab takes. This is used for two purposes:
+		 *  - the rendering width of a tab character;
+		 *  - the number of spaces to insert when [insertSpaces](#TextEditorOptions.insertSpaces) is true.
 		 */
 		tabSize: number;
 
@@ -475,8 +550,8 @@ declare namespace vscode {
 	}
 
 	/**
-	 * A text editor decoration type is a handle to additional styles in
-	 * the editor.
+	 * Represents a handle to a set of decorations
+	 * sharing the same [styling options](#DecorationRenderOptions) in a [text editor](#TextEditor).
 	 *
 	 * To get an instance of a `TextEditorDecorationType` use
 	 * [createTextEditorDecorationType](#window.createTextEditorDecorationType).
@@ -484,19 +559,40 @@ declare namespace vscode {
 	export interface TextEditorDecorationType {
 
 		/**
+		 * Internal representation of the handle.
 		 * @readonly
 		 */
 		key: string;
 
+		/**
+		 * Remove this decoration type and all decorations on all text editors using it.
+		 */
 		dispose(): void;
 	}
 
+	/**
+	 * Represents different [reveal](#TextEditor.revealRange) strategies in a text editor.
+	 */
 	export enum TextEditorRevealType {
-		Default,	// <<< what is 'Default'? suggest to make 'Default' an alias for a self-describing value >>>
+		/**
+		 * The range will be revealed with as little scrolling as possible.
+		 */
+		Default,
+		/**
+		 * The range will always be revealed in the center of the viewport.
+		 */
 		InCenter,
+		/**
+		 * If the range is outside the viewport, it will be revealed in the center of the viewport.
+		 * Otherwise, it will be revealed with as little scrolling as possible.
+		 */
 		InCenterIfOutsideViewport
 	}
 
+	/**
+	 * Represents different positions for rendering a decoration in an (overview ruler)[#DecorationRenderOptions.overviewRulerLane].
+	 * The overview ruler supports three lanes.
+	 */
 	export enum OverviewRulerLane {
 		Left = 1,
 		Center = 2,
@@ -504,6 +600,9 @@ declare namespace vscode {
 		Full = 7
 	}
 
+	/**
+	 * Represents theme specific rendering styles for a [text editor decoration](#TextEditorDecorationType).
+	 */
 	export interface ThemableDecorationRenderOptions {
 		/**
 		 * Background color of the decoration. Use rgba() and define transparent background colors to play well with other decorations.
@@ -566,7 +665,7 @@ declare namespace vscode {
 		color?: string;
 
 		/**
-		 * A path to an image to be rendered in the gutterIconPath.
+		 * An **absolute path** to an image to be rendered in the gutterIconPath.
 		 */
 		gutterIconPath?: string;
 
@@ -576,6 +675,9 @@ declare namespace vscode {
 		overviewRulerColor?: string;
 	}
 
+	/**
+	 * Represents rendering styles for a [text editor decoration](#TextEditorDecorationType).
+	 */
 	export interface DecorationRenderOptions extends ThemableDecorationRenderOptions {
 		/**
 		 * Should the decoration be rendered also on the whitespace after the line text.
@@ -599,6 +701,9 @@ declare namespace vscode {
 		dark?: ThemableDecorationRenderOptions;
 	}
 
+	/**
+	 * Represents options for a specific decoration in a [decoration set](#TextEditorDecorationType).
+	 */
 	export interface DecorationOptions {
 
 		/**
@@ -612,6 +717,9 @@ declare namespace vscode {
 		hoverMessage: MarkedString | MarkedString[];
 	}
 
+	/**
+	 * Represents an editor that is attached to a [document](#TextDocument).
+	 */
 	export interface TextEditor {
 
 		/**
@@ -642,7 +750,7 @@ declare namespace vscode {
 		 * callback executes.
 		 *
 		 * @param callback A function which can make edits using an [edit-builder](#TextEditorEdit).
-		 * @return A promise that resolve when the edits could be applied.
+		 * @return A promise that resolves with a value indicating if the edits could be applied.
 		 */
 		edit(callback: (editBuilder: TextEditorEdit) => void): Thenable<boolean>;
 
@@ -650,13 +758,18 @@ declare namespace vscode {
 		 * Adds a set of decorations to the text editor. If a set of decorations already exists with
 		 * the given [decoration type](#TextEditorDecorationType), they will be replaced.
 		 *
+		 * See [createTextEditorDecorationType](#window.createTextEditorDecorationType).
+		 *
 		 * @param decorationType A decoration type.
 		 * @param rangesOrOptions Either [ranges](#Range) or more detailed [options](#DecorationOptions).
 		 */
 		setDecorations(decorationType: TextEditorDecorationType, rangesOrOptions: Range[] | DecorationOptions[]): void;
 
 		/**
-		 * Scroll as necessary in order to reveal the given range.
+		 * Scroll as indicated by `revealType` in order to reveal the given range.
+		 *
+		 * @param range A range.
+		 * @param revealType The scrolling strategy for revealing `range`.
 		 */
 		revealRange(range: Range, revealType?: TextEditorRevealType): void;
 
@@ -670,7 +783,6 @@ declare namespace vscode {
 		show(column?: ViewColumn): void;
 
 		/**
-		 *
 		 * **This method is deprecated.** Use the command 'workbench.action.closeActiveEditor' instead.
 		 * This method shows unexpected bahviour and will be removed in the next major update.
 		 *
@@ -683,28 +795,40 @@ declare namespace vscode {
 
 
 	/**
-	 * A complex edit that will be applied on a TextEditor.
-	 * This holds a description of the edits and if the edits are valid (i.e. no overlapping regions, etc.) they can be applied on a Document associated with a TextEditor.
+	 * A complex edit that will be applied in one transaction on a TextEditor.
+	 * This holds a description of the edits and if the edits are valid (i.e. no overlapping regions, document was not changed in the meantime, etc.)
+	 * they can be applied on a [document](#Document) associated with a [text editor](#TextEditor).
 	 *
-	 * <<< for transactionality would be great of the text editor edit would allow to set the selection at the end of the operation >>>
 	 */
 	export interface TextEditorEdit {
 		/**
-		 * Replace a certain text region with a new value.	<<< what's about line separators in the replacement string? do I have to care? >>>
+		 * Replace a certain text region with a new value.
+		 * You can use \r\n or \n in `value` and they will be normalized to the current [document](#Document).
+		 *
+		 * @param location The range this operation should remove.
+		 * @param value The new text this operation should insert after removing `location`.
 		 */
 		replace(location: Position | Range | Selection, value: string): void;
 
 		/**
-		 * Insert text at a location	<<< what's about line separators in the replacement string? do I have to care? >>>
+		 * Insert text at a location.
+		 * You can use \r\n or \n in `value` and they will be normalized to the current [document](#Document).
+		 * Although the equivalent text edit can be made with [replace](#TextEditorEdit.replace), `insert` will produce a different resulting selection (it will get moved).
+		 *
+		 * @param location The position where the new text should be inserted.
+		 * @param value The new text this operation should insert.
 		 */
 		insert(location: Position, value: string): void;
 
 		/**
 		 * Delete a certain text region.
+		 *
+		 * @param location The range this operation should remove.
 		 */
 		delete(location: Range | Selection): void;
-
 	}
+
+
 
 	/**
 	 * A universal resource identifier representing either a file on disk on
@@ -771,7 +895,7 @@ declare namespace vscode {
 	 * operation to request cancellation, like cancelling a request
 	 * for completion items because the user continued to type.
 	 *
-	 * A cancallation token can only cancel once. That means it
+	 * A cancellation token can only cancel once. That means it
 	 * signaled cancellation it will do so forever   <<< don't understand this >>>
 	 */
 	export interface CancellationToken {
@@ -949,8 +1073,9 @@ declare namespace vscode {
 	 *
 	 */
 	export interface InputBoxOptions {
+
 		/**
-		* the value to prefill in the input box
+		* The value to prefill in the input box.
 		*/
 		value?: string;
 
@@ -960,29 +1085,23 @@ declare namespace vscode {
 		prompt?: string;
 
 		/**
-		* an optional string to show as place holder in the input box to guide the user what to type
+		* An optional string to show as place holder in the input box to guide the user what to type.
 		*/
 		placeHolder?: string;
 
 		/**
-		* set to true to show a password prompt that will not show the typed value
+		* Set to true to show a password prompt that will not show the typed value.
 		*/
 		password?: boolean;
 	}
 
 	/**
 	 * A document filter denotes a document by different properties like
-	 * the [language](#TextDocument.languageId), the (scheme)[#Uri.scheme] of
-	 * it's resource, or a glob-pattern that is applied to the (path)[#TextDocument.fileName]
+	 * the [language](#TextDocument.languageId), the [scheme](#Uri.scheme) of
+	 * it's resource, or a glob-pattern that is applied to the [path](#TextDocument.fileName)
 	 *
-	 * A language filter that applies to typescript files on disk would be this:
-	 * ```
-	 * { language: 'typescript', scheme: 'file' }
-	 * ```
-	 * a language filter that applies to all package.json files would be this:
-	 * ```
-	 * { language: 'json', pattern: '**\project.json' }
-	 * ```
+	 * @sample A language filter that applies to typescript files on disk: `{ language: 'typescript', scheme: 'file' }`
+	 * @sample A language filter that applies to all package.json paths: `{ language: 'json', pattern: '**\project.json' }`
 	 */
 	export interface DocumentFilter {
 
@@ -992,42 +1111,53 @@ declare namespace vscode {
 		language?: string;
 
 		/**
-		 * A Uri scheme, like `file` or `untitled`
+		 * A Uri [scheme](#Uri.scheme), like `file` or `untitled`.
 		 */
 		scheme?: string;
 
 		/**
-		 * A glob pattern, like `*.{ts,js}`
+		 * A glob pattern, like `*.{ts,js}`.
 		 */
 		pattern?: string;
 	}
 
 	/**
 	 * A language selector is the combination of one or many language identifiers
-	 * and (language filters)[#LanguageFilter]. Samples are
-	 * `let sel:DocumentSelector = 'typescript`, or
-	 * `let sel:DocumentSelector = ['typescript', { language: 'json', pattern: '**\tsconfig.json' }]`
+	 * and [language filters](#LanguageFilter).
+	 *
+	 * @sample `let sel:DocumentSelector = 'typescript'`;
+	 * @sample `let sel:DocumentSelector = ['typescript', { language: 'json', pattern: '**\tsconfig.json' }]`;
 	 */
 	export type DocumentSelector = string | DocumentFilter | (string | DocumentFilter)[];
 
 	/**
 	 * Contains additional diagnostic information about the context in which
-	 * a [code action](#CodeActionProvider.provideCodeActions) is run
+	 * a [code action](#CodeActionProvider.provideCodeActions) is run.
 	 */
 	export interface CodeActionContext {
+
+		/**
+		 * An array of diagnostics.
+		 */
 		diagnostics: Diagnostic[];
 	}
 
 	/**
-	 * A code action provider can add [commands](#Command) to a piece of code. The availability of
-	 * commands will be shown as a 'light bulb'.
+	 * The code action interface defines the contract between extensions and
+	 * the [light bulb](https://code.visualstudio.com/docs/editor/editingevolved#_code-action) feature.
+	 *
+	 * A code action can be any command that is [known](#commands.getCommands) to the system.
 	 */
 	export interface CodeActionProvider {
 
 		/**
 		 * Provide commands for the given document and range.
 		 *
-		 * @return An array of commands or a thenable of such. It is OK to return undefined or null.
+		 * @param document The document in which the command was invoked.
+		 * @param range The range for which the command was invoked.
+		 * @param context
+		 * @return An array of commands or a thenable of such. The lack of a result can be
+		 * signaled by returing `undefined`, `null`, or an empty array.
 		 */
 		provideCodeActions(document: TextDocument, range: Range, context: CodeActionContext, token: CancellationToken): Command[] | Thenable<Command[]>;
 	}
@@ -1035,6 +1165,11 @@ declare namespace vscode {
 	/**
 	 * A code lens represents a [command](#Command) that should be shown along with
 	 * source text, like the number of references, a way to run tests, etc.
+	 *
+	 * A code lens is _unresolved_ when no command is associated to it. For performance
+	 * reasons the creation of a code lens and resolving should be done to two stages.
+	 * @see [[#CodeLensProvider.provideCodeLenses]]
+	 * @see [[#CodeLensProvider.resolveCodeLens]]
 	 */
 	export class CodeLens {
 
@@ -1044,16 +1179,22 @@ declare namespace vscode {
 		range: Range;
 
 		/**
-		 * The command this code lens represents
+		 * The command this code lens represents.
 		 */
 		command: Command;
 
-		constructor(range: Range, command?: Command);
-
 		/**
-		 * `true` when there is a command associated
+		 * `true` when there is a command associated.
 		 */
 		isResolved: boolean;
+
+		/**
+		 * Creates a new code lens object.
+		 *
+		 * @param range The range to which this code lens applies.
+		 * @param command The command associated to this code lens.
+		 */
+		constructor(range: Range, command?: Command);
 	}
 
 	/**
@@ -1077,13 +1218,29 @@ declare namespace vscode {
 	}
 
 	/**
-	 * The definition of a symbol is one or many [locations](#Location)
-	 * <<< I don't understand. What is a 'Definition'? Example? >>>
+	 * The definition of a symbol represented as one or many [locations](#Location).
+	 * For most programming languages there is only one location at which a symbol is
+	 * defined.
 	 */
 	export type Definition = Location | Location[];
 
+	/**
+	 * The definition provider interface defines the contract between extensions and
+	 * the [go to definition](https://code.visualstudio.com/docs/editor/editingevolved#_go-to-definition)
+	 * and peek definition features.
+	 */
 	export interface DefinitionProvider {
-		provideDefinition(document: TextDocument, where: Position, token: CancellationToken): Definition | Thenable<Definition>;
+
+		/**
+		 * Provide the definition of the symbol at the given position and document.
+		 *
+		 * @param document The document in which the command was invoked.
+		 * @param position The position at which the command was invoked.
+		 * @param token A cancellation token.
+		 * @return An definition or a thenable that resolves to such. The lack of a result can be
+		 * signaled by returing `undefined` or `null`.
+		 */
+		provideDefinition(document: TextDocument, position: Position, token: CancellationToken): Definition | Thenable<Definition>;
 	}
 
 	/**
@@ -1093,35 +1250,122 @@ declare namespace vscode {
 	 */
 	export type MarkedString = string | { language: string; value: string };
 
+	/**
+	 * A hover represents additional information for a symbol or word. Hovers are
+	 * rendered in a tooltip-like widget.
+	 */
 	export class Hover {
 
+		/**
+		 * The contents of this hover.
+		 */
 		contents: MarkedString[];
 
+		/**
+		 * The range to which this hover appiles. When missing, the
+		 * editor will use the range at the current position or the
+		 * current position.
+		 */
 		range: Range;
 
+		/**
+		 * Creates a new hover object.
+		 *
+		 * @param contents The contents of the hover.
+		 * @param range The range to which the hover appiles.
+		 */
 		constructor(contents: MarkedString | MarkedString[], range?: Range);
 	}
 
+	/**
+	 * The hover provider interface defines the contract between extensions and
+	 * the [hover](https://code.visualstudio.com/docs/editor/editingevolved#_hover)-feature.
+	 */
 	export interface HoverProvider {
+
+		/**
+		 * Provide a hover for the given position and document. Multiple hovers at the same
+		 * position will be merged by the editor. A hover can have a range to which defaults
+		 * to the word range at the position.
+		 *
+		 * @param document The document in which the command was invoked.
+		 * @param position The position at which the command was invoked.
+		 * @param token A cancellation token.
+		 * @return A hover or a thenable that resolves to such. The lack of a result can be
+		 * signaled by returing `undefined` or `null`.
+		 */
 		provideHover(document: TextDocument, position: Position, token: CancellationToken): Hover | Thenable<Hover>;
 	}
 
+	/**
+	 * A document highlight kind.
+	 */
 	export enum DocumentHighlightKind {
+
+		/**
+		 * A textual occurrance.
+		 */
 		Text,
+
+		/**
+		 * Read-access of a symbol, like reading a variable.
+		 */
 		Read,
+
+		/**
+		 * Write-access of a symbol, like writing to a variable.
+		 */
 		Write
 	}
 
+	/**
+	 * A document highlight is a range inside a text document which deserves
+	 * special attention. Usually a document highlight is visualized by changing
+	 * the background color of its range.
+	 */
 	export class DocumentHighlight {
-		constructor(range: Range, kind?: DocumentHighlightKind);
+
+		/**
+		 * The range this highlight applies to.
+		 */
 		range: Range;
+
+		/**
+		 * The highlight kind, default is [text](#DocumentHighlightKind.Text).
+		 */
 		kind: DocumentHighlightKind;
+
+		/**
+		 * Creates a new document highlight object.
+		 *
+		 * @param range The range the highlight applies to.
+		 * @param kind The highlight kind, default is [text](#DocumentHighlightKind.Text).
+		 */
+		constructor(range: Range, kind?: DocumentHighlightKind);
 	}
 
+	/**
+	 * The document highlight provider interface defines the contract between extensions and
+	 * the word-highlight-feature.
+	 */
 	export interface DocumentHighlightProvider {
+
+		/**
+		 * Provide a set of document highligts, like all occurrences of a variable or
+		 * all exit-points of a function.
+		 *
+		 * @param document The document in which the command was invoked.
+		 * @param position The position at which the command was invoked.
+		 * @param token A cancellation token.
+		 * @return An array of document highlights or a thenable that resolves to such. The lack of a result can be
+		 * signaled by returing `undefined`, `null`, or an empty array.
+		 */
 		provideDocumentHighlights(document: TextDocument, position: Position, token: CancellationToken): DocumentHighlight[] | Thenable<DocumentHighlight[]>;
 	}
 
+	/**
+	 * A symbol kind.
+	 */
 	export enum SymbolKind {
 		File,
 		Module,
@@ -1140,30 +1384,116 @@ declare namespace vscode {
 		String,
 		Number,
 		Boolean,
-		Array,
+		Array
 	}
 
+	/**
+	 * Represents information about programming constructs like variables, classes,
+	 * interfaces etc.
+	 */
 	export class SymbolInformation {
-		constructor(name: string, kind: SymbolKind, range: Range, uri?: Uri, containerName?: string);
+
+		/**
+		 * The name of this symbol.
+		 */
 		name: string;
+
+		/**
+		 * The name of the symbol containing this symbol.
+		 */
 		containerName: string;
+
+		/**
+		 * The kind of this symbol.
+		 */
 		kind: SymbolKind;
+
+		/**
+		 * The location of this symbol.
+		 */
 		location: Location;
+
+		/**
+		 * Creates a new symbol information object.
+		 *
+		 * @param name The name of the symbol.
+		 * @param kind The kind of the symbol.
+		 * @param range The range of the location of the symbol.
+		 * @param uri The resource of the location of symbol, defaults to the current document.
+		 * @param containerName The name of the symbol containg the symbol.
+		 */
+		constructor(name: string, kind: SymbolKind, range: Range, uri?: Uri, containerName?: string);
 	}
 
+	/**
+	 * The document symbol provider interface defines the contract between extensions and
+	 * the [go to symbol](https://code.visualstudio.com/docs/editor/editingevolved#_goto-symbol)-feature.
+	 */
 	export interface DocumentSymbolProvider {
+
+		/**
+		 * Provide symbol information for the given document.
+		 *
+		 * @param document The document in which the command was invoked.
+		 * @param token A cancellation token.
+		 * @return An array of document highlights or a thenable that resolves to such. The lack of a result can be
+		 * signaled by returing `undefined`, `null`, or an empty array.
+		 */
 		provideDocumentSymbols(document: TextDocument, token: CancellationToken): SymbolInformation[] | Thenable<SymbolInformation[]>;
 	}
 
+	/**
+	 * The workspace symbol provider interface defines the contract between extensions and
+	 * the [symbol search](https://code.visualstudio.com/docs/editor/editingevolved#_open-symbol-by-name)-feature.
+	 */
 	export interface WorkspaceSymbolProvider {
+
+		/**
+		 * Project-wide search for a symbol matching the given query string. It is up to the provider
+		 * how to search given the query string, like substring, indexOf etc.
+		 *
+		 * @param query A non-empty query string.
+		 * @param token A cancellation token.
+		 * @return An array of document highlights or a thenable that resolves to such. The lack of a result can be
+		 * signaled by returing `undefined`, `null`, or an empty array.
+		 */
 		provideWorkspaceSymbols(query: string, token: CancellationToken): SymbolInformation[] | Thenable<SymbolInformation[]>;
 	}
 
-	export interface ReferenceProvider {
-		provideReferences(document: TextDocument, position: Position, options: { includeDeclaration: boolean; }, token: CancellationToken): Location[] | Thenable<Location[]>;
+	/**
+	 * Value-object that contains additional information when
+	 * requesting references.
+	 */
+	export interface ReferenceContext {
+
+		/**
+		 * Include the declaration of the current symbol.
+		 */
+		includeDeclaration: boolean;
 	}
 
-	// <<< why is TextEdit miles away from TextEditorEdit? >>>
+	/**
+	 * The reference provider interface defines the contract between extensions and
+	 * the [find references](https://code.visualstudio.com/docs/editor/editingevolved#_peek)-feature.
+	 */
+	export interface ReferenceProvider {
+
+		/**
+		 * Provide a set of project-wide references for the given position and document.
+		 *
+		 * @param document The document in which the command was invoked.
+		 * @param position The position at which the command was invoked.
+		 * @param context
+		 * @param token A cancellation token.
+		 * @return An array of locations or a thenable that resolves to such. The lack of a result can be
+		 * signaled by returing `undefined`, `null`, or an empty array.
+		 */
+		provideReferences(document: TextDocument, position: Position, context: ReferenceContext, token: CancellationToken): Location[] | Thenable<Location[]>;
+	}
+
+	/**
+	 *
+	 */
 	export class TextEdit {
 		static replace(range: Range, newText: string): TextEdit;
 		static insert(position: Position, newText: string): TextEdit;
@@ -1174,9 +1504,9 @@ declare namespace vscode {
 	}
 
 	/**
-	 * A workspace edit represents text changes for many documents.
-	 * <<< How do we ensure that a WorkspaceEdit applied to a text document is still valid. Is this something the
-	 *     workspace edit does by first resolving the document based on the URI ? >>>
+	 * A workspace edit represents textual changes for many documents. When applying a workspace edit,
+	 * the editor implements an 'all-or-nothing'-strategy, that means failure to load one document or
+	 * make changes to one document will make this edit being ignored.
 	 */
 	export class WorkspaceEdit {
 
@@ -1187,28 +1517,83 @@ declare namespace vscode {
 		 */
 		size: number;
 
-		replace(resource: Uri, range: Range, newText: string): void;
+		/**
+		 * Replace the given range with given text for the given resource.
+		 *
+		 * @param uri A resource identifier.
+		 * @param range A range.
+		 * @param newText A string.
+		 */
+		replace(uri: Uri, range: Range, newText: string): void;
 
-		insert(resource: Uri, range: Position, newText: string): void;
+		/**
+		 * Insert the given text at the given position.
+		 *
+		 * @param uri A resource identifier.
+		 * @param position A position.
+		 * @param newText A string.
+		 */
+		insert(uri: Uri, position: Position, newText: string): void;
 
-		delete(resource: Uri, range: Range): void;
+		/**
+		 * Delete the text at the give range.
+		 */
+		delete(uri: Uri, range: Range): void;
 
+		/**
+		 * Check if this edit affects the given resource.
+		 * @param uri A resource identifier.
+		 * @return `true` if the given resource will be touched by this edit
+		 */
 		has(uri: Uri): boolean;
 
+		/**
+		 * Set (and replace) text edits for a resource.
+		 *
+		 * @param uri A resource identifier.
+		 * @param edits An array of text edits.
+		 */
 		set(uri: Uri, edits: TextEdit[]): void;
 
+		/**
+		 * Get the text edits for a resource.
+		 *
+		 * @param uri A resource identifier.
+		 * @return An array of text edits.
+		 */
 		get(uri: Uri): TextEdit[];
 
+		/**
+		 * Get all text edits grouped by resource.
+		 *
+		 * @return An array of `[Uri, TextEdit[]]`-tuples.
+		 */
 		entries(): [Uri, TextEdit[]][];
 	}
 
 	/**
-	 *
+	 * The rename provider interface defines the contract between extensions and
+	 * the [rename](https://code.visualstudio.com/docs/editor/editingevolved#_rename-symbol)-feature.
 	 */
 	export interface RenameProvider {
+
+		/**
+		 * Provide an edit that describes changes that have to be made to one
+		 * or many resources to rename a symbol to a different name.
+		 *
+		 * @param document The document in which the command was invoked.
+		 * @param position The position at which the command was invoked.
+		 * @param newName The new name of the symbol. If the given name is not valid, the provider must return a rejected promise.
+		 * @param token A cancellation token.
+		 * @return A workspace edit or a thenable that resolves to such. The lack of a result can be
+		 * signaled by returing `undefined` or `null`.
+		 */
 		provideRenameEdits(document: TextDocument, position: Position, newName: string, token: CancellationToken): WorkspaceEdit | Thenable<WorkspaceEdit>;
 	}
 
+	/**
+	 * Value-object describing what options formatting should use.
+	 */
 	export interface FormattingOptions {
 		tabSize: number;
 		insertSpaces: boolean;
@@ -1339,7 +1724,8 @@ declare namespace vscode {
 		onEnterRules?: OnEnterRule[];
 
 		/**
-		 * Deprecated
+		 * **Deprecated**.
+		 * @deprecated
 		 */
 		__electricCharacterSupport?: {
 			brackets: {
@@ -1357,7 +1743,8 @@ declare namespace vscode {
 		};
 
 		/**
-		 * Deprecated
+		 * **Deprecated**.
+		 * @deprecated
 		 */
 		__characterPairSupport?: {
 			autoClosingPairs: {
@@ -1394,9 +1781,24 @@ declare namespace vscode {
 	 * inside a text file.
 	 */
 	export class Location {
-		constructor(uri: Uri, range: Range | Position);
+
+		/**
+		 * The resource identifier of this location.
+		 */
 		uri: Uri;
+
+		/**
+		 * The document range of this locations.
+		 */
 		range: Range;
+
+		/**
+		 * Creates a new location object.
+		 *
+		 * @param uri The resource identifier.
+		 * @param rangeOrPosition The range or position. Positions will be converted to an empty range.
+		 */
+		constructor(uri: Uri, rangeOrPosition: Range | Position);
 	}
 
 	/**
@@ -1664,8 +2066,7 @@ declare namespace vscode {
 	/**
 	 * Represents an extension.
 	 *
-	 * To get an instance of an `Extension` use
-	 * [getExtension](#extensions.getExtension).
+	 * To get an instance of an `Extension` use [getExtension](#extensions.getExtension).
 	 */
 	export interface Extension<T> {
 
@@ -1690,7 +2091,7 @@ declare namespace vscode {
 		packageJSON: any;
 
 		/**
-		 * The public API exported by this extension. It is an invalid
+		 * The public API exported by this extension. It is an invalid action
 		 * to access this field before this extension has been activated.
 		 */
 		exports: T;
@@ -1736,7 +2137,10 @@ declare namespace vscode {
 		extensionPath: string;
 
 		/**
-		 * Get the absolute path of a resource contained inside the extension.
+		 * Get the absolute path of a resource contained in the extension.
+		 *
+		 * @param relativePath A relative path to a resource contained in the extension.
+		 * @return The absolute path of the resource.
 		 */
 		asAbsolutePath(relativePath: string): string;
 	}
@@ -1959,7 +2363,7 @@ declare namespace vscode {
 	}
 
 	/**
-	 * An event describing a change in the text of a model.
+	 * An event describing an individual change in the text of a [document](#TextDocument).
 	 */
 	export interface TextDocumentContentChangeEvent {
 		/**
@@ -1977,7 +2381,7 @@ declare namespace vscode {
 	}
 
 	/**
-	 * An event describing a document change event.
+	 * An event describing a transactional [document](#TextDocument) change.
 	 */
 	export interface TextDocumentChangeEvent {
 
@@ -2029,7 +2433,7 @@ declare namespace vscode {
 		export function saveAll(includeUntitled?: boolean): Thenable<boolean>;
 
 		/**
-		 * Apply the provided (workspace edit)[#WorkspaceEdit].
+		 * Apply the provided [workspace edit](#WorkspaceEdit).
 		 */
 		export function applyEdit(edit: WorkspaceEdit): Thenable<boolean>;
 
@@ -2058,12 +2462,24 @@ declare namespace vscode {
 		 */
 		export function openTextDocument(fileName: string): Thenable<TextDocument>;
 
+		/**
+		 * An event that is emitted when a [text document](#TextDocument) is created.
+		 */
 		export const onDidOpenTextDocument: Event<TextDocument>;
 
+		/**
+		 * An event that is emitted when a [text document](#TextDocument) is disposed.
+		 */
 		export const onDidCloseTextDocument: Event<TextDocument>;
 
+		/**
+		 * An event that is emitted when a [text document](#TextDocument) is changed.
+		 */
 		export const onDidChangeTextDocument: Event<TextDocumentChangeEvent>;
 
+		/**
+		 * An event that is emitted when a [text document](#TextDocument) is saved to disk.
+		 */
 		export const onDidSaveTextDocument: Event<TextDocument>;
 
 		/**
@@ -2094,79 +2510,127 @@ declare namespace vscode {
 		export function match(selector: DocumentSelector, document: TextDocument): number;
 
 		/**
-		 * Create a diagnostics collections with an optional name.
+		 * Create a diagnostics collections.
+		 *
+		 * @param name The [name](#DiagnosticCollection.name) of the collection.
+		 * @return A new diagnostic collection.
 		 */
 		export function createDiagnosticCollection(name?: string): DiagnosticCollection;
 
 		/**
 		 *
+		 * @param selector A selector that defines the documents this provider is applicable to.
+		 * @param provider A completion provider.
+		 * @param triggerCharacters Trigger completion when the user types one of the characters, like `.` or `:`.
+		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
+		 */
+		export function registerCompletionItemProvider(selector: DocumentSelector, provider: CompletionItemProvider, ...triggerCharacters: string[]): Disposable;
+
+		/**
+		 *
+		 * @param selector A selector that defines the documents this provider is applicable to.
+		 * param provider A code action provider.
+		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
 		 */
 		export function registerCodeActionsProvider(language: DocumentSelector, provider: CodeActionProvider): Disposable;
 
 		/**
 		 *
+		 * @param selector A selector that defines the documents this provider is applicable to.
+		 * @param provider A code lens provider.
+		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
 		 */
 		export function registerCodeLensProvider(language: DocumentSelector, provider: CodeLensProvider): Disposable;
 
 		/**
 		 *
+		 * @param selector A selector that defines the documents this provider is applicable to.
+		 * @param provider A definition provider.
+		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
 		 */
 		export function registerDefinitionProvider(selector: DocumentSelector, provider: DefinitionProvider): Disposable;
 
 		/**
 		 *
+		 * @param selector A selector that defines the documents this provider is applicable to.
+		 * @param provider A hover provider.
+		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
 		 */
 		export function registerHoverProvider(selector: DocumentSelector, provider: HoverProvider): Disposable;
 
 		/**
 		 *
+		 * @param selector A selector that defines the documents this provider is applicable to.
+		 * @param provider A document highlight provider.
+		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
 		 */
 		export function registerDocumentHighlightProvider(selector: DocumentSelector, provider: DocumentHighlightProvider): Disposable;
 
 		/**
 		 *
+		 * @param selector A selector that defines the documents this provider is applicable to.
+		 * @param provider A document symbol provider.
+		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
 		 */
 		export function registerDocumentSymbolProvider(selector: DocumentSelector, provider: DocumentSymbolProvider): Disposable;
 
 		/**
 		 *
+		 * @param provider A workspace symbol provider.
+		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
 		 */
 		export function registerWorkspaceSymbolProvider(provider: WorkspaceSymbolProvider): Disposable;
 
 		/**
 		 *
+		 * @param selector A selector that defines the documents this provider is applicable to.
+		 * @param provider A reference provider.
+		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
 		 */
 		export function registerReferenceProvider(selector: DocumentSelector, provider: ReferenceProvider): Disposable;
 
 		/**
 		 *
+		 * @param selector A selector that defines the documents this provider is applicable to.
+		 * @param provider A rename provider.
+		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
 		 */
 		export function registerRenameProvider(selector: DocumentSelector, provider: RenameProvider): Disposable;
 
 		/**
 		 *
+		 * @param selector A selector that defines the documents this provider is applicable to.
+		 * @param provider A document formatting edit provider.
+		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
 		 */
 		export function registerDocumentFormattingEditProvider(selector: DocumentSelector, provider: DocumentFormattingEditProvider): Disposable;
 
 		/**
 		 *
+		 * @param selector A selector that defines the documents this provider is applicable to.
+		 * @param provider A document range formatting edit provider.
+		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
 		 */
 		export function registerDocumentRangeFormattingEditProvider(selector: DocumentSelector, provider: DocumentRangeFormattingEditProvider): Disposable;
 
 		/**
 		 *
+		 * @param selector A selector that defines the documents this provider is applicable to.
+		 * @param provider An on type formatting edit provider.
+		 * @param firstTriggerCharacter A character on which formatting should be triggered, like `}`.
+		 * param moreTriggerCharacter More trigger characters.
+		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
 		 */
 		export function registerOnTypeFormattingEditProvider(selector: DocumentSelector, provider: OnTypeFormattingEditProvider, firstTriggerCharacter: string, ...moreTriggerCharacter: string[]): Disposable;
 
 		/**
 		 *
+		 * @param selector A selector that defines the documents this provider is applicable to.
+		 * @param provider A signature help provider.
+		 * @param triggerCharacters Trigger signature help when the user types one of the characters, like `,` or `(`.
+		 * @return A [disposable](#Disposable) that unregisters this provider when being disposed.
 		 */
 		export function registerSignatureHelpProvider(selector: DocumentSelector, provider: SignatureHelpProvider, ...triggerCharacters: string[]): Disposable;
-
-		/**
-		 *
-		 */
-		export function registerCompletionItemProvider(selector: DocumentSelector, provider: CompletionItemProvider, ...triggerCharacters: string[]): Disposable;
 
 		/**
 		 *
