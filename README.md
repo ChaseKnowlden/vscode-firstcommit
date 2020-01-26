@@ -108,11 +108,11 @@ The **extension host** process runs code implemented by a plugin. To debug exten
 * Launch the development version of Code with the following command line option:
 
 ``` bash
-		./tools/run.sh --remote-debugging-port=9222
+		./scripts/code.sh --remote-debugging-port=9222
 ```
 Windows
 ``` bash
-		tools\run --remote-debugging-port=9222
+		scripts\code --remote-debugging-port=9222
 ```
 
 * Choose the `Attach to VSCode` launch configuration from the launch dropdown in the Debug viewlet and press `F5`.
