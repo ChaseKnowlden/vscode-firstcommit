@@ -35,7 +35,11 @@ function rename(project: projectService.IProject, resource: URI, position: Edito
 		.filter(location => {
 			return !typescript.isDefaultLib(location.fileName)
 		})
+<<<<<<< HEAD
 		.map(location => {
+=======
+	   .map(location => {
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 			return {
 				resource: URI.parse(location.fileName),
 				newText: newName,

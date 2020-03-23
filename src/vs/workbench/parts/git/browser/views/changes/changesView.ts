@@ -392,6 +392,7 @@ export class ChangesView extends EventEmitter.EventEmitter implements GitView.IV
 
 		if (input instanceof GitEditorInputs.GitDiffEditorInput) {
 			return (<GitEditorInputs.GitDiffEditorInput> input).getFileStatus();
+<<<<<<< HEAD
 		}
 
 		if (input instanceof GitEditorInputs.GitIndexEditorInput) {
@@ -401,6 +402,17 @@ export class ChangesView extends EventEmitter.EventEmitter implements GitView.IV
 		if (input instanceof GitEditorInputs.NativeGitIndexStringEditorInput) {
 			return (<GitEditorInputs.NativeGitIndexStringEditorInput> input).getFileStatus() || null;
 		}
+=======
+	    }
+
+		if (input instanceof GitEditorInputs.GitIndexEditorInput) {
+			return (<GitEditorInputs.GitIndexEditorInput> input).getFileStatus() || null;
+	    }
+
+		if (input instanceof GitEditorInputs.NativeGitIndexStringEditorInput) {
+			return (<GitEditorInputs.NativeGitIndexStringEditorInput> input).getFileStatus() || null;
+	    }
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 		if (input instanceof Files.FileEditorInput) {
 			var fileInput = <Files.FileEditorInput> input;
@@ -419,7 +431,11 @@ export class ChangesView extends EventEmitter.EventEmitter implements GitView.IV
 			if (status) {
 				return status;
 			}
+<<<<<<< HEAD
 		}
+=======
+	    }
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 		return null;
 	}

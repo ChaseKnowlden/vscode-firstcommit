@@ -50,7 +50,11 @@ suite('HTML - worker', () => {
 		return { worker: worker, model: model, markers: markers };
 	};
 
+<<<<<<< HEAD
 	var testSuggestionsFor = function(value:string):WinJS.TPromise<Modes.ISuggestions> {
+=======
+ 	var testSuggestionsFor = function(value:string):WinJS.TPromise<Modes.ISuggestions> {
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 		var idx = value.indexOf('|');
 		var content = value.substr(0, idx) + value.substr(idx + 1);
@@ -62,6 +66,7 @@ suite('HTML - worker', () => {
 		return env.worker.suggest(url, position).then(result => result[0]);
 	};
 
+<<<<<<< HEAD
 	var assertSuggestion = function(completion: Modes.ISuggestions, label: string, type?: string, codeSnippet?: string) {
 		var proposalsFound = completion.suggestions.filter(function(suggestion: Modes.ISuggestion) {
 			return suggestion.label === label && (!type || suggestion.type === type) && (!codeSnippet || suggestion.codeSnippet === codeSnippet);
@@ -69,6 +74,15 @@ suite('HTML - worker', () => {
 		if (proposalsFound.length != 1) {
 			assert.fail("Suggestion not found: " + label + ", has " + completion.suggestions.map(s => s.label).join(', '));
 		}
+=======
+	  var assertSuggestion = function(completion: Modes.ISuggestions, label: string, type?: string, codeSnippet?: string) {
+		  var proposalsFound = completion.suggestions.filter(function(suggestion: Modes.ISuggestion) {
+			  return suggestion.label === label && (!type || suggestion.type === type) && (!codeSnippet || suggestion.codeSnippet === codeSnippet);
+		  });
+		  if (proposalsFound.length != 1) {
+			  assert.fail("Suggestion not found: " + label + ", has " + completion.suggestions.map(s => s.label).join(', '));
+		  }
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	};
 
 	test('Intellisense', function(testDone): any {

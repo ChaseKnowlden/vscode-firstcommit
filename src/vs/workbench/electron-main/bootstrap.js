@@ -50,8 +50,13 @@ app.once('ready', function() {
 	var loader = require('../../loader');
 
 	loader.config({
+<<<<<<< HEAD
 		nodeRequire: require,
 		nodeMain: __filename,
+=======
+	    nodeRequire: require,
+	    nodeMain: __filename,
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		baseUrl: uriFromPath(path.dirname(path.dirname(path.dirname((__dirname)))))
 	});
 

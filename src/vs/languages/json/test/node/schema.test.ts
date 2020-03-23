@@ -340,8 +340,13 @@ suite('JSON - schema', () => {
 		var service : SchemaService.IJSONSchemaService = new SchemaService.JSONSchemaService(requestServiceMock);
 
 		var input = {
+<<<<<<< HEAD
 			"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
 			"contentVersion": "1.0.0.0",
+=======
+  			"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  			"contentVersion": "1.0.0.0",
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 			"resources": [
 				{
 					"name": "SQLServer",
@@ -383,8 +388,13 @@ suite('JSON - schema', () => {
 		var service : SchemaService.IJSONSchemaService = new SchemaService.JSONSchemaService(requestServiceMock);
 
 		var input = {
+<<<<<<< HEAD
 			"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
 			"contentVersion": "1.0.0.0",
+=======
+  			"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  			"contentVersion": "1.0.0.0",
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 			"resources": [
 				{
 					"name": "foo",

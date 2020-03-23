@@ -4,12 +4,21 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
+<<<<<<< HEAD
 import { EventEmitter } from 'vs/base/common/eventEmitter';
 import types = require('vs/base/common/types');
 import errors = require('vs/base/common/errors');
 import strings = require('vs/base/common/strings');
 import { IStorageService, StorageScope, StorageEvent, StorageEventType } from 'vs/platform/storage/common/storage';
 import { IWorkspaceContextService, IWorkspace } from 'vs/platform/workspace/common/workspace';
+=======
+import {EventEmitter} from 'vs/base/common/eventEmitter';
+import types = require('vs/base/common/types');
+import errors = require('vs/base/common/errors');
+import strings = require('vs/base/common/strings');
+import {IStorageService, StorageScope, StorageEvent, StorageEventType} from 'vs/platform/storage/common/storage';
+import {IWorkspaceContextService, IWorkspace} from 'vs/platform/workspace/common/workspace';
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 // Browser localStorage interface
 export interface IStorage {
@@ -50,9 +59,14 @@ export class Storage extends EventEmitter implements IStorageService {
 		else {
 			this.globalStorage = window.localStorage;
 
+<<<<<<< HEAD
 			const env = contextService.getConfiguration().env;
 			if (env.pluginTestsPath || (!workspace && !env.pluginDevelopmentPath)) {
 				this.workspaceStorage = inMemoryLocalStorageInstance; // without workspace or in any plugin test, we use inMemory storage unless we develop a plugin where we want to preserve state
+=======
+			if (!workspace && !contextService.getConfiguration().env.pluginDevelopmentPath) {
+				this.workspaceStorage = inMemoryLocalStorageInstance; // without workspace, we use inMemory storage unless we develop a plugin where we want to preserve state
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 			} else {
 				this.workspaceStorage = window.localStorage;
 			}

@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
+<<<<<<< HEAD
 import { ITree, IElementCallback } from 'vs/base/parts/tree/common/tree';
 import { TPromise } from 'vs/base/common/winjs.base';
 import { EventProvider } from 'vs/base/common/eventProvider';
@@ -13,6 +14,18 @@ import { IEditorInput } from 'vs/platform/editor/common/editor';
 
 export interface IPickOpenEntry {
 	id?: string;
+=======
+import {ITree, IElementCallback} from 'vs/base/parts/tree/common/tree';
+import {TPromise} from 'vs/base/common/winjs.base';
+import {EventProvider} from 'vs/base/common/eventProvider';
+import {IQuickNavigateConfiguration, IAutoFocus} from 'vs/base/parts/quickopen/browser/quickOpen';
+import {createDecorator, ServiceIdentifier} from 'vs/platform/instantiation/common/instantiation';
+import {IEditorInput} from 'vs/platform/editor/common/editor';
+
+export interface IPickOpenEntry {
+	id?: string;
+	checked?: boolean;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	label: string;
 	description?: string;
 }
@@ -66,7 +79,11 @@ export interface IInputOptions {
 export var IQuickOpenService = createDecorator<IQuickOpenService>('quickOpenService')
 
 export interface IQuickOpenService {
+<<<<<<< HEAD
 	serviceId: ServiceIdentifier<any>;
+=======
+	serviceId : ServiceIdentifier<any>;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 	/**
 	 * Asks the container to show the quick open control with the optional prefix set. If the optional parameter

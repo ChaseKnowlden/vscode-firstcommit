@@ -15,6 +15,7 @@ import {KeyMod, KeyCode, BinaryKeybindings} from 'vs/base/common/keyCodes';
 suite('Keybinding Service', () => {
 
 	test('resolve key', function() {
+<<<<<<< HEAD
 		var keybinding = KeyMod.CtrlCmd | KeyMod.Shift | KeyCode.KEY_Z;
 		var contextRules = [{
 			key: 'bar',
@@ -35,6 +36,28 @@ suite('Keybinding Service', () => {
 		var resolver = new CommonKeybindingResolver([keybindingItem], []);
 		assert.equal(resolver.resolve({ bar: 'baz' }, 0, keybinding).commandId, 'yes');
 		assert.equal(resolver.resolve({ bar: 'bz' }, 0, keybinding), null);
+=======
+		 var keybinding = KeyMod.CtrlCmd | KeyMod.Shift | KeyCode.KEY_Z;
+		 var contextRules = [{
+			 key: 'bar',
+			 operator: 'equal',
+			 operand: 'baz'
+		 }]
+		 var keybindingItem: IKeybindingItem = {
+			 command: 'yes',
+			 context: contextRules,
+			 keybinding: keybinding,
+			 weight1: 0,
+			 weight2: 0
+		 };
+
+		 assert.equal(CommonKeybindingResolver.contextMatchesRules({ bar: 'baz' }, contextRules), true);
+		 assert.equal(CommonKeybindingResolver.contextMatchesRules({ bar: 'bz' }, contextRules), false);
+
+		 var resolver = new CommonKeybindingResolver([keybindingItem], []);
+		 assert.equal(resolver.resolve({ bar: 'baz' }, 0, keybinding).commandId, 'yes');
+		 assert.equal(resolver.resolve({ bar: 'bz' }, 0, keybinding), null);
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	});
 
 	function createEqualContextRule(key: string, operand: any): IKeybindingContextRule {

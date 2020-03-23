@@ -86,7 +86,11 @@ export function createScanner(text:string, ignoreTrivia:boolean = false):JSONSca
 			pos++;
 		} else {
 			pos++;
+<<<<<<< HEAD
 			while (pos < text.length && isDigit(text.charCodeAt(pos))) {
+=======
+	        while (pos < text.length && isDigit(text.charCodeAt(pos))) {
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 				pos++;
 			}
 		}

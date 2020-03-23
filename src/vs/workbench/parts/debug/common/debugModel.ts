@@ -21,7 +21,11 @@ function resolveChildren(debugService: debug.IDebugService, parent: debug.IExpre
 		return TPromise.as([]);
 	}
 
+<<<<<<< HEAD
 	return session.variables({ variablesReference: parent.reference }).then(response => {
+=======
+	return session.resolveVariables({ variablesReference: parent.reference }).then(response => {
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		return arrays.distinct(response.body.variables, v => v.name).map(
 			v => new Variable(parent, v.variablesReference, v.name, v.value)
 		);
@@ -41,7 +45,11 @@ export class Thread implements debug.IThread {
 	}
 
 	public getId(): string {
+<<<<<<< HEAD
 		return `thread:${this.name}:${this.threadId}`;
+=======
+		return `thread:${ this.name }:${ this.threadId }`;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	}
 }
 
@@ -60,7 +68,11 @@ export class OutputElement implements debug.ITreeElement {
 
 export class ValueOutputElement extends OutputElement {
 
+<<<<<<< HEAD
 	constructor(public value: string, public severity: severity, grouped = false, public category?: string, public counter: number = 1) {
+=======
+	constructor(public value: string, public severity: severity, grouped = false, public category?: string, public counter:number = 1) {
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		super(grouped);
 	}
 }
@@ -166,7 +178,11 @@ export class Variable implements debug.IExpression {
 	}
 
 	public getId(): string {
+<<<<<<< HEAD
 		return `variable:${this.parent.getId()}:${this.name}`;
+=======
+		return `variable:${ this.parent.getId() }:${ this.name }`;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	}
 
 	public getChildren(debugService: debug.IDebugService): TPromise<debug.IExpression[]> {
@@ -187,7 +203,11 @@ export class Scope implements debug.IScope {
 	}
 
 	public getId(): string {
+<<<<<<< HEAD
 		return `scope:${this.threadId}:${this.name}:${this.reference}`;
+=======
+		return `scope:${ this.threadId }:${ this.name }:${ this.reference }`;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	}
 
 	public getChildren(debugService: debug.IDebugService): TPromise<Variable[]> {
@@ -336,7 +356,11 @@ export class Model extends ee.EventEmitter implements debug.IModel {
 	public toggleEnablement(element: debug.IEnablement): void {
 		element.enabled = !element.enabled;
 		if (element instanceof Breakpoint && !element.enabled) {
+<<<<<<< HEAD
 			var breakpoint = <Breakpoint>element;
+=======
+			var breakpoint = <Breakpoint> element;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 			breakpoint.lineNumber = breakpoint.desiredLineNumber;
 		}
 
@@ -395,7 +419,11 @@ export class Model extends ee.EventEmitter implements debug.IModel {
 	public logToRepl(value: string, severity?: severity): void;
 	public logToRepl(value: { [key: string]: any }, severity?: severity): void;
 	public logToRepl(value: any, severity?: severity): void {
+<<<<<<< HEAD
 		let elements: OutputElement[] = [];
+=======
+		let elements:OutputElement[] = [];
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		let previousOutput = this.replElements.length && (<ValueOutputElement>this.replElements[this.replElements.length - 1]);
 		let groupTogether = !!previousOutput && severity === previousOutput.severity;
 
@@ -423,7 +451,11 @@ export class Model extends ee.EventEmitter implements debug.IModel {
 	}
 
 	public appendReplOutput(value: string, severity?: severity): void {
+<<<<<<< HEAD
 		var elements: OutputElement[] = [];
+=======
+		var elements:OutputElement[] = [];
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		let previousOutput = this.replElements.length && (<ValueOutputElement>this.replElements[this.replElements.length - 1]);
 		let lines = value.split('\n');
 		let groupTogether = !!previousOutput && previousOutput.category === 'output' && severity === previousOutput.severity;

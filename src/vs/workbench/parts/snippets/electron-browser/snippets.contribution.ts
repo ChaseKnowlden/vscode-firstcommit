@@ -112,7 +112,11 @@ function fileExists(path: string): winjs.TPromise<boolean> {
 function createFile(path: string, content: string): winjs.Promise {
 	return new winjs.Promise((c, e, p) => {
 		fs.writeFile(path, content, function(err) {
+<<<<<<< HEAD
 			if(err) {
+=======
+		    if(err) {
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 				e(err);
 			}
 			c(true);

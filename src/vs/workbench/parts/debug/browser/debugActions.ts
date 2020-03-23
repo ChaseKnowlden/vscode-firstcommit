@@ -22,7 +22,11 @@ import IDebugService = debug.IDebugService;
 
 var clipboard = remote.require('clipboard');
 
+<<<<<<< HEAD
 var registry = <wbaregistry.IWorkbenchActionRegistry>platform.Registry.as(wbaregistry.Extensions.WorkbenchActions);
+=======
+var registry = <wbaregistry.IWorkbenchActionRegistry> platform.Registry.as(wbaregistry.Extensions.WorkbenchActions);
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 export class AbstractDebugAction extends actions.Action {
 
@@ -155,7 +159,11 @@ export class StepOverDebugAction extends AbstractDebugAction {
 	}
 
 	public run(): Promise {
+<<<<<<< HEAD
 		return this.debugService.getActiveSession().next({ threadId: this.debugService.getViewModel().getFocusedThreadId() });
+=======
+		return this.debugService.getActiveSession().stepOver({ threadId: this.debugService.getViewModel().getFocusedThreadId() });
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	}
 
 	protected isEnabled(): boolean {
@@ -276,7 +284,11 @@ export class RemoveAllBreakpointsAction extends AbstractDebugAction {
 
 	constructor(id: string, label: string, @IDebugService debugService: IDebugService, @IKeybindingService keybindingService: IKeybindingService) {
 		super(id, label, 'debug-action remove', debugService, keybindingService);
+<<<<<<< HEAD
 		this.toDispose.push(this.debugService.getModel().addListener2(debug.ModelEvents.BREAKPOINTS_UPDATED, () => this.updateEnablement()));
+=======
+		this.toDispose.push(this.debugService.getModel().addListener2(debug.ModelEvents.BREAKPOINTS_UPDATED,() => this.updateEnablement()));
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	}
 
 	public run(): Promise {
@@ -382,7 +394,11 @@ export class ReapplyBreakpointsAction extends AbstractDebugAction {
 export class ToggleBreakpointAction extends EditorAction {
 	static ID = 'editor.debug.action.toggleBreakpoint';
 
+<<<<<<< HEAD
 	constructor(descriptor: editorCommon.IEditorActionDescriptorData, editor: editorCommon.ICommonCodeEditor, @IDebugService private debugService: IDebugService) {
+=======
+	constructor(descriptor:editorCommon.IEditorActionDescriptorData, editor:editorCommon.ICommonCodeEditor, @IDebugService private debugService: IDebugService) {
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		super(descriptor, editor, Behaviour.TextFocus);
 	}
 
@@ -426,7 +442,11 @@ export class RunToCursorAction extends EditorAction {
 
 	private debugService: IDebugService;
 
+<<<<<<< HEAD
 	constructor(descriptor: editorCommon.IEditorActionDescriptorData, editor: editorCommon.ICommonCodeEditor, @IDebugService debugService: IDebugService) {
+=======
+	constructor(descriptor:editorCommon.IEditorActionDescriptorData, editor:editorCommon.ICommonCodeEditor, @IDebugService debugService: IDebugService) {
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		super(descriptor, editor, Behaviour.TextFocus);
 		this.debugService = debugService;
 	}
@@ -485,7 +505,11 @@ export class AddWatchExpressionAction extends AbstractDebugAction {
 export class SelectionToWatchExpressionsAction extends EditorAction {
 	static ID = 'editor.debug.action.selectionToWatch';
 
+<<<<<<< HEAD
 	constructor(descriptor: editorCommon.IEditorActionDescriptorData, editor: editorCommon.ICommonCodeEditor, @IDebugService private debugService: IDebugService, @IViewletService private viewletService: IViewletService) {
+=======
+	constructor(descriptor:editorCommon.IEditorActionDescriptorData, editor:editorCommon.ICommonCodeEditor, @IDebugService private debugService: IDebugService, @IViewletService private viewletService: IViewletService) {
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		super(descriptor, editor, Behaviour.TextFocus);
 	}
 
@@ -509,7 +533,11 @@ export class SelectionToWatchExpressionsAction extends EditorAction {
 export class SelectionToReplAction extends EditorAction {
 	static ID = 'editor.debug.action.selectionToRepl';
 
+<<<<<<< HEAD
 	constructor(descriptor: editorCommon.IEditorActionDescriptorData, editor: editorCommon.ICommonCodeEditor, @IDebugService private debugService: IDebugService) {
+=======
+	constructor(descriptor:editorCommon.IEditorActionDescriptorData, editor:editorCommon.ICommonCodeEditor, @IDebugService private debugService: IDebugService) {
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		super(descriptor, editor, Behaviour.TextFocus);
 	}
 
@@ -621,10 +649,17 @@ export class ClearReplAction extends baseeditor.EditorInputAction {
 function getFullName(expression: debug.IExpression, sessionType: string): string {
 	let names = [expression.name];
 	if (expression instanceof model.Variable) {
+<<<<<<< HEAD
 		var v = (<model.Variable>expression).parent;
 		while (v instanceof model.Variable || v instanceof model.Expression) {
 			names.push((<model.Variable>v).name);
 			v = (<model.Variable>v).parent;
+=======
+		var v = (<model.Variable> expression).parent;
+		while (v instanceof model.Variable || v instanceof model.Expression) {
+			names.push((<model.Variable> v).name);
+			v = (<model.Variable> v).parent;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		}
 	}
 	names = names.reverse();
@@ -636,9 +671,15 @@ function getFullName(expression: debug.IExpression, sessionType: string): string
 			result = name;
 		} else if (sessionType === 'node' && !propertySyntax.test(name)) {
 			// Use safe way to access node properties a['property_name']. Also handles array elements.
+<<<<<<< HEAD
 			result = name && name.indexOf('[') === 0 ? `${result}${name}` : `${result}['${name}']`;
 		} else {
 			result = `${result}.${name}`;
+=======
+			result = name && name.indexOf('[') === 0 ? `${ result }${ name }` : `${ result }['${ name }']`;
+		} else {
+			result = `${ result }.${ name }`;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		}
 	});
 

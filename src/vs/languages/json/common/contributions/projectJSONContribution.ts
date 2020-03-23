@@ -38,7 +38,11 @@ export class ProjectJSONContribution implements JSONWorker.IJSONWorkerContributi
 	public collectPropertySuggestions(contributionId: string, currentWord: string, addValue: boolean, isLast:boolean, result: JSONWorker.ISuggestionsCollector) : WinJS.Promise {
 		if (contributionId === 'nugget-packages') {
 			var queryUrl : string;
+<<<<<<< HEAD
 			if (currentWord.length > 0) {
+=======
+ 			if (currentWord.length > 0) {
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 				queryUrl = 'https://www.nuget.org/api/v2/Packages?'
 					+ '$filter=Id%20ge%20\''
 					+ encodeURIComponent(currentWord)

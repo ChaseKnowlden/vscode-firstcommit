@@ -188,9 +188,15 @@ export abstract class OmnisharpServer {
 			ret = Promise.resolve(undefined);
 
 		} else if (/^win/.test(process.platform)) {
+<<<<<<< HEAD
 			// when killing a process in windows its child
 			// processes are *not* killed but become root
 			// processes. Therefore we use TASKKILL.EXE
+=======
+	        // when killing a process in windows its child
+	        // processes are *not* killed but become root
+	        // processes. Therefore we use TASKKILL.EXE
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 			ret = new Promise<OmnisharpServer>((resolve, reject) => {
 				var killer = exec(`taskkill /F /T /PID ${this._serverProcess.pid}`, function (err, stdout, stderr) {
 					if (err) {

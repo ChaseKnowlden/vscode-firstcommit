@@ -2,7 +2,11 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 /* General Theme Colors */
 .monaco-workbench.vs-dark		 	{ background-color: #252526; color: #CCC; }
 
@@ -19,7 +23,11 @@
 /* Input Fields */
 .monaco-workbench.vs-dark input,
 .monaco-workbench.vs-dark textarea {
+<<<<<<< HEAD
 	background-color: #3C3C3C;
+=======
+	background-color: #3C3C3C; 
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 }
 
 .monaco-workbench.vs-dark input:disabled {

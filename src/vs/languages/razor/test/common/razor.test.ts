@@ -23,7 +23,11 @@ suite('Syntax Highlighting - Razor', () => {
 	});
 
 	test('', () => {
+<<<<<<< HEAD
 		modesUtil.executeTests(tokenizationSupport,[
+=======
+	 	modesUtil.executeTests(tokenizationSupport,[
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 			// Embedding - embedded html
 			[{
 			line: '@{ var x; <b>x</b> }',

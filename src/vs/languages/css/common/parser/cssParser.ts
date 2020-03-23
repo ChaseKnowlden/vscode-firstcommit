@@ -539,7 +539,11 @@ export class Parser {
 		// media_query : [ONLY | NOT]? S* IDENT S* [ AND S* expression ]* | expression [ AND S* expression ]*
 		// expression : '(' S* IDENT S* [ ':' S* expr ]? ')' S*
 
+<<<<<<< HEAD
 		var node = <nodes.MediaQuery> this.create(nodes.MediaQuery);
+=======
+ 		var node = <nodes.MediaQuery> this.create(nodes.MediaQuery);
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 		var parseExpression= true;
 		var hasContent = false;

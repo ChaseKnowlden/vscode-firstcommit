@@ -6,6 +6,7 @@
 
 import errors = require('vs/base/common/errors');
 import types = require('vs/base/common/types');
+<<<<<<< HEAD
 import { MessageList, Severity as BaseSeverity } from 'vs/base/browser/ui/messagelist/messageList';
 import { Identifiers } from 'vs/workbench/common/constants';
 import { StatusbarAlignment } from 'vs/workbench/browser/parts/statusbar/statusbar';
@@ -15,6 +16,17 @@ import { ITelemetryService } from 'vs/platform/telemetry/common/telemetry';
 import { IKeybindingService, IKeybindingContextKey } from 'vs/platform/keybinding/common/keybindingService';
 import { IQuickOpenService } from 'vs/workbench/services/quickopen/browser/quickOpenService';
 import { IStatusbarService } from 'vs/workbench/services/statusbar/statusbarService';
+=======
+import {MessageList, Severity as BaseSeverity} from 'vs/base/browser/ui/messagelist/messageList';
+import {Identifiers} from 'vs/workbench/common/constants';
+import {StatusbarAlignment} from 'vs/workbench/browser/parts/statusbar/statusbar';
+import {IDisposable} from 'vs/base/common/lifecycle';
+import {IMessageService, IMessageWithAction, IConfirmation, Severity} from 'vs/platform/message/common/message';
+import {ITelemetryService} from 'vs/platform/telemetry/common/telemetry';
+import {IKeybindingService, IKeybindingContextKey} from 'vs/platform/keybinding/common/keybindingService';
+import {IQuickOpenService} from 'vs/workbench/services/quickopen/browser/quickOpenService';
+import {IStatusbarService} from 'vs/workbench/services/statusbar/statusbarService';
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 interface IBufferedMessage {
 	severity: Severity;
@@ -23,7 +35,10 @@ interface IBufferedMessage {
 }
 
 export class WorkbenchMessageService implements IMessageService {
+<<<<<<< HEAD
 
+=======
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	public static GLOBAL_MESSAGES_SHOWING_CONTEXT = 'globalMessageVisible';
 
 	public serviceId = IMessageService;
@@ -75,12 +90,18 @@ export class WorkbenchMessageService implements IMessageService {
 
 	private onQuickOpenShowing(): void {
 		this.canShowMessages = false; // when quick open is open, dont show messages behind
+<<<<<<< HEAD
 		this.handler.hide(); // hide messages when quick open is visible
+=======
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	}
 
 	private onQuickOpenHiding(): void {
 		this.canShowMessages = true;
+<<<<<<< HEAD
 		this.handler.show(); // make sure the handler is visible
+=======
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 		// Release messages from buffer
 		while (this.messageBuffer.length) {
@@ -133,7 +154,11 @@ export class WorkbenchMessageService implements IMessageService {
 
 		// Check flag if we can show a message now
 		if (!this.canShowMessages) {
+<<<<<<< HEAD
 			const messageObj: IBufferedMessage = { severity: sev, message, disposeFn: () => this.messageBuffer.splice(this.messageBuffer.indexOf(messageObj), 1) };
+=======
+			const messageObj:IBufferedMessage = { severity: sev, message, disposeFn: () => this.messageBuffer.splice(this.messageBuffer.indexOf(messageObj), 1) };
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 			this.messageBuffer.push(messageObj);
 
 			// Return function that allows to remove message from buffer
@@ -164,6 +189,7 @@ export class WorkbenchMessageService implements IMessageService {
 			let hideHandle: number;
 
 			// Dispose function takes care of timeouts and actual entry
+<<<<<<< HEAD
 			const dispose = {
 				dispose: () => {
 					if (showHandle) {
@@ -179,6 +205,21 @@ export class WorkbenchMessageService implements IMessageService {
 					}
 				}
 			};
+=======
+			const dispose = { dispose: () => {
+				if (showHandle) {
+					clearTimeout(showHandle);
+				}
+
+				if (hideHandle) {
+					clearTimeout(hideHandle);
+				}
+
+				if (statusDispose) {
+					statusDispose.dispose();
+				}
+			}};
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 			this.statusMsgDispose = dispose;
 
 			if (typeof autoDisposeAfter === 'number' && autoDisposeAfter > 0) {

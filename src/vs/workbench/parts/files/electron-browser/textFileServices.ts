@@ -6,6 +6,7 @@
 'use strict';
 
 import nls = require('vs/nls');
+<<<<<<< HEAD
 import { Promise, TPromise } from 'vs/base/common/winjs.base';
 import { Registry } from 'vs/platform/platform';
 import { IEditorModesRegistry, Extensions as ModesExtensions } from 'vs/editor/common/modes/modesRegistry';
@@ -27,6 +28,29 @@ import { IInstantiationService, INullService } from 'vs/platform/instantiation/c
 import { IEventService } from 'vs/platform/event/common/event';
 import { IWorkspaceContextService } from 'vs/workbench/services/workspace/common/contextService';
 import { ILifecycleService } from 'vs/platform/lifecycle/common/lifecycle';
+=======
+import {Promise, TPromise} from 'vs/base/common/winjs.base';
+import {Registry} from 'vs/platform/platform';
+import {IEditorModesRegistry, Extensions as ModesExtensions} from 'vs/editor/common/modes/modesRegistry';
+import paths = require('vs/base/common/paths');
+import strings = require('vs/base/common/strings');
+import {isWindows} from 'vs/base/common/platform';
+import URI from 'vs/base/common/uri';
+import {Action} from 'vs/base/common/actions';
+import {UntitledEditorModel} from 'vs/workbench/browser/parts/editor/untitledEditorModel';
+import {TextFileService as BrowserTextFileService} from 'vs/workbench/parts/files/browser/textFileServices';
+import {CACHE, TextFileEditorModel} from 'vs/workbench/parts/files/browser/editors/textFileEditorModel';
+import {ITextFileOperationResult, ConfirmResult} from 'vs/workbench/parts/files/common/files';
+import {IWorkbenchActionRegistry, Extensions as ActionExtensions} from 'vs/workbench/browser/actionRegistry';
+import {SyncActionDescriptor} from 'vs/platform/actions/common/actions';
+import {IUntitledEditorService} from 'vs/workbench/services/untitled/browser/untitledEditorService';
+import {IMessageService, Severity} from 'vs/platform/message/common/message'
+import {IFileService} from 'vs/platform/files/common/files';
+import {IInstantiationService, INullService} from 'vs/platform/instantiation/common/instantiation';
+import {IEventService} from 'vs/platform/event/common/event';
+import {IWorkspaceContextService} from 'vs/workbench/services/workspace/common/contextService';
+import {ILifecycleService} from 'vs/platform/lifecycle/common/lifecycle';
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 import remote = require('remote');
 import ipc = require('ipc');
@@ -167,7 +191,11 @@ export class TextFileService extends BrowserTextFileService {
 
 		if (resourcesToConfirm.length > 1) {
 			message.push('');
+<<<<<<< HEAD
 			message.push(...resourcesToConfirm.map((r) => paths.basename(r.fsPath)));
+=======
+			message.push(...resourcesToConfirm.map((r) => nls.localize('dirtyList', "- {0}", paths.basename(r.fsPath))));
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 			message.push('');
 		}
 

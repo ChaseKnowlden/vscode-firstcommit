@@ -99,7 +99,11 @@
 }
 
 /* Dark theme */
+<<<<<<< HEAD
 .monaco-editor.vs-dark .quickfix-widget {
+=======
+ .monaco-editor.vs-dark .quickfix-widget {
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	background-color: #2D2D30;
 	border: 1px solid rgb(69, 69, 69);
 }
@@ -110,7 +114,11 @@
 
 
 /* High Contrast Theming */
+<<<<<<< HEAD
 .monaco-editor.hc-black .quickfix-widget {
+=======
+ .monaco-editor.hc-black .quickfix-widget {
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	background-color: #0C141F;
 	border: 2px solid #6FC3DF;
 }

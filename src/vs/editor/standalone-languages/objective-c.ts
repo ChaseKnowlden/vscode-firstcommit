@@ -44,7 +44,11 @@ export var language = <ILanguage> {
 		'@selector',
 		'@synthesize',
 
+<<<<<<< HEAD
 		'__declspec',
+=======
+ 		'__declspec',
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 		'assign',
 		'auto',
@@ -138,7 +142,11 @@ export var language = <ILanguage> {
 			[/[{}\[\]()<>]/, '@brackets'],
 
 			[/[a-zA-Z@#]\w*/, { cases: { '@keywords': 'keyword',
+<<<<<<< HEAD
 										'@default': 'identifier' } }],
+=======
+									   '@default': 'identifier' } }],
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 			[/[<>=\\+\\-\\*\\/\\^\\|\\~,]|and\\b|or\\b|not\\b]/, 'operator'],
 	],
@@ -158,11 +166,19 @@ export var language = <ILanguage> {
 		],
 
 	numbers: [
+<<<<<<< HEAD
 			[/0[xX][0-9a-fA-F]*(_?[0-9a-fA-F])*/, 'number.hex'],
 			[/@decimal((\.@decpart)?([eE][\-+]?@decpart)?)[fF]*/, {
 				cases: {  	'(\\d)*': 'number',
 							'$0':'number.float' }} ]
 		],
+=======
+		    [/0[xX][0-9a-fA-F]*(_?[0-9a-fA-F])*/, 'number.hex'],
+			[/@decimal((\.@decpart)?([eE][\-+]?@decpart)?)[fF]*/, {
+				cases: {  	'(\\d)*': 'number',
+							'$0':'number.float' }} ]
+	  	],
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 	// Recognize strings, including those broken across lines with \ (but not without)
 	strings: [

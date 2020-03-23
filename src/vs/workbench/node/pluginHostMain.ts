@@ -14,6 +14,7 @@ import 'vs/languages/lib/common/wireProtocol';
 import pfs = require('vs/base/node/pfs');
 
 import URI from 'vs/base/common/uri';
+<<<<<<< HEAD
 import { TPromise } from 'vs/base/common/winjs.base';
 import json = require('vs/base/common/json');
 import strings = require('vs/base/common/strings');
@@ -36,6 +37,30 @@ import { IThemeExtensionPoint } from 'vs/platform/theme/common/themeExtensionPoi
 import { ILanguageExtensionPoint } from 'vs/editor/common/modes/languageExtensionPoint';
 import { ITMSyntaxExtensionPoint } from 'vs/editor/node/textMate/TMSyntax';
 import { PluginScanner } from 'vs/workbench/node/extensionPoints';
+=======
+import {TPromise} from 'vs/base/common/winjs.base';
+import json = require('vs/base/common/json');
+import strings = require('vs/base/common/strings');
+import paths = require('vs/base/common/paths');
+import {IPluginService, IPluginDescription, IMessage} from 'vs/platform/plugins/common/plugins';
+import {PluginsRegistry, PluginsMessageCollector, IPluginsMessageCollector} from 'vs/platform/plugins/common/pluginsRegistry';
+import {PluginHostAPIImplementation} from 'vs/workbench/api/browser/pluginHost.api.impl';
+import { create as createIPC, IPluginsIPC } from 'vs/platform/plugins/common/ipcRemoteCom';
+import {PluginHostModelService} from 'vs/workbench/api/common/pluginHostDocuments';
+import {IInstantiationService } from 'vs/platform/instantiation/common/instantiation';
+import InstantiationService = require('vs/platform/instantiation/common/instantiationService');
+import {PluginHostPluginService} from 'vs/platform/plugins/common/nativePluginService';
+import {PluginHostThreadService} from 'vs/platform/thread/common/pluginHostThreadService';
+import marshalling = require('vs/base/common/marshalling');
+import {PluginHostTelemetryService} from 'vs/workbench/api/common/pluginHostTelemetry';
+import {BaseRequestService} from 'vs/platform/request/common/baseRequestService';
+import {BaseWorkspaceContextService} from 'vs/platform/workspace/common/baseWorkspaceContextService';
+import {ModeServiceImpl} from 'vs/editor/common/services/modeServiceImpl';
+import {IThemeExtensionPoint} from 'vs/platform/theme/common/themeExtensionPoint';
+import {ILanguageExtensionPoint} from 'vs/editor/common/modes/languageExtensionPoint';
+import {ITMSyntaxExtensionPoint} from 'vs/editor/node/textMate/TMSyntax';
+import {PluginScanner} from 'vs/workbench/node/extensionPoints';
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 import Severity from 'vs/base/common/severity';
 import { IWorkspaceContextService } from 'vs/platform/workspace/common/workspace';
 import { Client } from 'vs/base/node/service.net';
@@ -90,7 +115,11 @@ export function createServices(remoteCom: IPluginsIPC, initData: IInitData, shar
 }
 
 interface ITestRunner {
+<<<<<<< HEAD
 	run(testsRoot: string, clb: (error: Error) => void): void;
+=======
+	run(testsRoot:string, clb: (error:Error) => void): void;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 }
 
 export class PluginHostMain {
@@ -99,7 +128,11 @@ export class PluginHostMain {
 		@IWorkspaceContextService private contextService: IWorkspaceContextService,
 		@IPluginService private pluginService: IPluginService,
 		@IInstantiationService instantiationService: IInstantiationService
+<<<<<<< HEAD
 	) { }
+=======
+	) {}
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 	public start(): TPromise<void> {
 		return this.readPlugins();
@@ -215,8 +248,13 @@ export class PluginHostMain {
 		}
 
 		// Require the test runner via node require from the provided path
+<<<<<<< HEAD
 		let testRunner: ITestRunner;
 		let requireError: Error;
+=======
+		let testRunner:ITestRunner;
+		let requireError:Error;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		try {
 			testRunner = <any>require.__$__nodeRequire(env.pluginTestsPath);
 		} catch (error) {
@@ -233,12 +271,17 @@ export class PluginHostMain {
 						c(null);
 					}
 
+<<<<<<< HEAD
 					// after tests have run, we shutdown the host
 					this.gracefulExit();
+=======
+					setTimeout(() => process.exit(), 800 /* TODO@Ben need to wait to give the test output a chance to buffer */); // after tests have run, we shutdown the host
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 				});
 			});
 		}
 
+<<<<<<< HEAD
 		// Otherwise make sure to shutdown anyway even in case of an error
 		else {
 			this.gracefulExit();
@@ -252,4 +295,10 @@ export class PluginHostMain {
 		// messages to the main process, we delay the process.exit() by some time
 		setTimeout(() => process.exit(), 500);
 	}
+=======
+		setTimeout(() => process.exit(), 0); // we always want to shutdown, even in case of an error
+
+		return TPromise.wrapError<void>(requireError ? requireError.toString() : nls.localize('pluginTestError', "Path {0} does not point to a valid extension test runner.", env.pluginTestsPath));
+	}
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 }

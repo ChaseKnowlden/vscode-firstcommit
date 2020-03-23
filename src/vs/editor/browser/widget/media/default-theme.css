@@ -9,10 +9,17 @@
 	line-height: 19px;
 	color: #333;
 	/*
+<<<<<<< HEAD
 	 * WORKAROUND:
 	 * Because of bug https://monacotools.visualstudio.com/DefaultCollection/Monaco/_workitems/edit/13254
 	 * we are *not* using the color white (or #ffffff, rgba(255,255,255)) but something very close to white.
 	 */
+=======
+	 WORKAROUND:
+	 Because of bug https://monacotools.visualstudio.com/DefaultCollection/Monaco/_workitems/edit/13254
+	 we are *not* using the color white (or #ffffff, rgba(255,255,255)) but something very close to white.
+	*/
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	background: #fffffe;
 }
 

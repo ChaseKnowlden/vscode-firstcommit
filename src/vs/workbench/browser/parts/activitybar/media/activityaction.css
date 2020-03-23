@@ -2,7 +2,11 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 .monaco-workbench > .activitybar > .content .monaco-action-bar .action-item {
 	display: block;
 	position: relative;
@@ -70,12 +74,20 @@
 .monaco-workbench > .activitybar > .content .monaco-action-bar .badge .badge-content {
 	position: absolute;
 	top: 20px;
+<<<<<<< HEAD
 	right: 8px;
+=======
+	right: 8px;	
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	font-size: 11px;
 	min-width: 8px;
 	height: 18px;
 	line-height: 18px;
+<<<<<<< HEAD
 	padding: 0 5px;
+=======
+	padding: 0 5px;	
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	border-radius: 20px;
 	text-align: center;
 	color: white;
@@ -92,8 +104,13 @@
 	position: absolute;
 	top: 15px;
 	right: 0;
+<<<<<<< HEAD
 	width: 0;
 	height: 0;
+=======
+	width: 0; 
+	height: 0; 
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	border-top: 5px solid transparent;
 	border-bottom: 5px solid transparent;
 	border-right: 5px solid #F6F6F6;
@@ -104,8 +121,13 @@
 	position: absolute;
 	top: 15px;
 	right: 0;
+<<<<<<< HEAD
 	width: 0;
 	height: 0;
+=======
+	width: 0; 
+	height: 0; 
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	border-top: 5px solid transparent;
 	border-bottom: 5px solid transparent;
 	border-right: 5px solid #252526;
@@ -116,8 +138,13 @@
 	position: absolute;
 	top: 15px;
 	left: 0;
+<<<<<<< HEAD
 	width: 0;
 	height: 0;
+=======
+	width: 0; 
+	height: 0; 
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	border-top: 5px solid transparent;
 	border-bottom: 5px solid transparent;
 	border-left: 5px solid #F6F6F6;
@@ -128,8 +155,13 @@
 	position: absolute;
 	top: 15px;
 	left: 0;
+<<<<<<< HEAD
 	width: 0;
 	height: 0;
+=======
+	width: 0; 
+	height: 0; 
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	border-top: 5px solid transparent;
 	border-bottom: 5px solid transparent;
 	border-left: 5px solid #252526;
@@ -154,7 +186,11 @@
 
 .monaco-workbench > .activitybar.right > .content .monaco-action-bar .badge {
 	left: auto;
+<<<<<<< HEAD
 	right: 0;
+=======
+	right: 0;	
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 }
 
 /* High Contrast Theming */

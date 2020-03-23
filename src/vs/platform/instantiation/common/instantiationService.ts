@@ -245,9 +245,15 @@ class ServicesMap {
 			if (actualFirstServiceIndex !== Number.MAX_VALUE
 				&& actualFirstServiceIndex !== expectedFirstServiceIndex) {
 
+<<<<<<< HEAD
 				let msg = `[createInstance] constructor '${descriptor.ctor.name}' has first` +
 					` service dependency at position ${actualFirstServiceIndex + 1} but is called with` +
 					` ${expectedFirstServiceIndex - 1} static arguments that are expected to come first`;
+=======
+				let msg = `[createInstance] constructor '${descriptor.ctor.name}' has first\
+ service dependency at position ${actualFirstServiceIndex + 1} but is called with\
+ ${expectedFirstServiceIndex - 1} static arguments that are expected to come first`;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 				// throw new Error(msg);
 				console.warn(msg);

@@ -31,7 +31,10 @@ export interface IProductConfiguration {
 			png: string;
 		}
 	},
+<<<<<<< HEAD
 	win32AppUserModelId: string;
+=======
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	dataFolderName: string;
 	downloadUrl: string;
 	updateUrl: string;
@@ -321,7 +324,11 @@ function parseString(argv: string[], key: string, defaultValue?: string, fallbac
 
 export function getPlatformIdentifier(): string {
 	if (process.platform === 'linux') {
+<<<<<<< HEAD
 		return `linux-${process.arch}`;
+=======
+		return `linux-${ process.arch }`;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	}
 
 	return process.platform;

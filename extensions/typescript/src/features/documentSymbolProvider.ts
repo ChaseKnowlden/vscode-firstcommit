@@ -2,7 +2,11 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
+<<<<<<< HEAD
 'use strict';
+=======
+ 'use strict';
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 import { workspace, DocumentSymbolProvider, SymbolInformation, SymbolKind, TextDocument, Position, Range, CancellationToken } from 'vscode';
 

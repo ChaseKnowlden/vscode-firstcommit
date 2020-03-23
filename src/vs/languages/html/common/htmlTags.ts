@@ -102,7 +102,11 @@ export function getHTML5TagProvider(): IHTMLTagProvider {
 		style: ['media', 'type', 'scoped:v'],
 		script: ['src', 'async:v', 'defer:v', 'type', 'charset'],
 		body: ['onafterprint', 'onbeforeprint', 'onbeforeunload', 'onblur', 'onerror', 'onfocus', 'onhashchange', 'onload', 'onmessage',
+<<<<<<< HEAD
 				'onoffline', 'ononline', 'onpagehide', 'onpageshow', 'onpopstate', 'onresize', 'onscroll', 'onstorage', 'onunload'],
+=======
+			   'onoffline', 'ononline', 'onpagehide', 'onpageshow', 'onpopstate', 'onresize', 'onscroll', 'onstorage', 'onunload'],
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		table: none,
 		caption: none,
 		colgroup: ['span'],

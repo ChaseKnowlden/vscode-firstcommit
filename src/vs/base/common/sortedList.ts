@@ -23,13 +23,18 @@ export interface ISortedList<TKey, TValue> extends IIterable<KeyValue<TKey, TVal
 	 * Number of elements in a sorted list.
 	 * O(1)
 	 */
+<<<<<<< HEAD
 	count: number;
+=======
+	 count: number;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 	/**
 	 * Gets the value associated with the specified key.
 	 * Returns null if there is no value asociated with the key.
 	 * O(log n)
 	 */
+<<<<<<< HEAD
 	getValue(key: TKey): TValue;
 
 	/**
@@ -37,25 +42,43 @@ export interface ISortedList<TKey, TValue> extends IIterable<KeyValue<TKey, TVal
 	 * O(1)
 	 */
 	getValues(): IIterator<TValue>;
+=======
+	 getValue(key: TKey): TValue;
+
+	 /**
+	 * Gets an iterator over values.
+	 * O(1)
+	 */
+	 getValues(): IIterator<TValue>;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 	/**
 	 * Gets the value at the specified index.
 	 * Returns null if index is out of bounds.
 	 * O(1)
 	 */
+<<<<<<< HEAD
 	getValueByIndex(index: number): TValue;
+=======
+	 getValueByIndex(index: number): TValue;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 	/**
 	 * Gets the key at the specified index.
 	 * Returns null if index is out of bounds.
 	 * O(1)
 	 */
+<<<<<<< HEAD
 	getKey(index: number): TKey;
+=======
+	 getKey(index: number): TKey;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 	/**
 	 * Gets an iterator over keys.
 	 * O(1)
 	 */
+<<<<<<< HEAD
 	getKeys(): IIterator<TKey>;
 
 	/**
@@ -64,19 +87,37 @@ export interface ISortedList<TKey, TValue> extends IIterable<KeyValue<TKey, TVal
 	 * O(log n)
 	 */
 	indexOfKey(key: TKey): number;
+=======
+	 getKeys(): IIterator<TKey>;
+
+	 /**
+	  * Returns the zero-based index of the specified key in a SortedList object.
+	  * Returns -1 if the key is not found.
+	  * O(log n)
+	  */
+	 indexOfKey(key: TKey): number;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 	/**
 	 * Adds the specified key and value to the sorted list.
 	 * O(n)
 	 */
+<<<<<<< HEAD
 	add(key: TKey, value: TValue): void;
+=======
+	 add(key: TKey, value: TValue): void;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 	/**
 	 * Removes a value from the sorted list.
 	 * Returns true if the value got removed, false otherwise.
 	 * O(n)
 	 */
+<<<<<<< HEAD
 	remove(key: TKey): boolean;
+=======
+	 remove(key: TKey): boolean;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 }
 
 export interface KeyValue<TKey, TValue> {
@@ -130,7 +171,11 @@ export class SortedList<TKey, TValue> implements ISortedList<TKey, TValue> {
 		}
 		var indexOfKey = this.indexOfKey(key);
 		if (indexOfKey >= 0) {
+<<<<<<< HEAD
 			return this.values[indexOfKey];
+=======
+			 return this.values[indexOfKey];
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		}
 
 		return null;
@@ -154,7 +199,11 @@ export class SortedList<TKey, TValue> implements ISortedList<TKey, TValue> {
 
 		var position = 0;
 		while (position < this.keys.length && this.comparator(key, this.keys[position]) > 0) {
+<<<<<<< HEAD
 			position++;
+=======
+			 position++;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		}
 
 		this.keys.splice(position, 0, key);
@@ -167,8 +216,13 @@ export class SortedList<TKey, TValue> implements ISortedList<TKey, TValue> {
 		}
 		var indexOfKey = this.indexOfKey(key);
 		if (indexOfKey >= 0) {
+<<<<<<< HEAD
 			this.values.splice(indexOfKey, 1);
 			this.keys.splice(indexOfKey, 1);
+=======
+			 this.values.splice(indexOfKey, 1);
+			 this.keys.splice(indexOfKey, 1);
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		}
 
 		return indexOfKey >= 0;
@@ -210,7 +264,11 @@ class SortedListIterator<TKey, TValue> implements IIterator<KeyValue<TKey, TValu
 		return this.index + 1 < this.keys.length;
 	}
 
+<<<<<<< HEAD
 	public reset(): void {
+=======
+	 public reset(): void {
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		this.index = -1;
 	}
 
@@ -246,7 +304,11 @@ class ListIterator<TValue> implements IIterator<TValue> {
 		return this.index + 1 < this.values.length;
 	}
 
+<<<<<<< HEAD
 	public reset(): void {
+=======
+	 public reset(): void {
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		this.index = -1;
 	}
 

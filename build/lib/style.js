@@ -15,6 +15,10 @@ module.exports = function (opts) {
 
 			if (opts.whitespace) {
 				var lines = contents.split(/\r\n|\r|\n/);
+<<<<<<< HEAD
+=======
+				var hadErrorLineNumber = 0;
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 				for (var i = 0, len = lines.length; i < len; i++) {
 					var line = lines[i];
 					if (line.length === 0) {
@@ -32,9 +36,21 @@ module.exports = function (opts) {
 						// empty line
 						continue;
 					} else {
+<<<<<<< HEAD
 						console.log(file.path + '(' + (i + 1) + ',1): Mixed whitespace indentation');
 					}
 				}
+=======
+						// console.log(file.path + '(' + hadErrorLineNumber + ',1): Mixed whitespace indentation');
+						hadErrorLineNumber = i + 1;
+						break;
+					}
+				}
+
+				if (hadErrorLineNumber) {
+					console.log(file.path + '(' + hadErrorLineNumber + ',1): Mixed whitespace indentation');
+				}
+>>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 			}
 		} else {
 			var lines = contents.split(/\r\n|\r|\n/);
