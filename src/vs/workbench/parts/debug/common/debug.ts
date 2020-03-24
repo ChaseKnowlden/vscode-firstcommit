@@ -218,11 +218,7 @@ export interface IRawDebugSession extends ee.EventEmitter {
 	attach(args: DebugProtocol.AttachRequestArguments): TPromise<DebugProtocol.AttachResponse>;
 	stop(restart?: boolean): TPromise<DebugProtocol.DisconnectResponse>;
 
-<<<<<<< HEAD
 	next(args: DebugProtocol.NextArguments): TPromise<DebugProtocol.NextResponse>;
-=======
-	stepOver(args: DebugProtocol.NextArguments): TPromise<DebugProtocol.NextResponse>;
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	stepIn(args: DebugProtocol.StepInArguments): TPromise<DebugProtocol.StepInResponse>;
 	stepOut(args: DebugProtocol.StepOutArguments): TPromise<DebugProtocol.StepOutResponse>;
 	continue(args: DebugProtocol.ContinueArguments): TPromise<DebugProtocol.ContinueResponse>;
@@ -232,13 +228,8 @@ export interface IRawDebugSession extends ee.EventEmitter {
 	setExceptionBreakpoints(args: DebugProtocol.SetExceptionBreakpointsArguments): TPromise<DebugProtocol.SetExceptionBreakpointsResponse>;
 	stackTrace(args: DebugProtocol.StackTraceArguments): TPromise<DebugProtocol.StackTraceResponse>;
 	scopes(args: DebugProtocol.ScopesArguments): TPromise<DebugProtocol.ScopesResponse>;
-<<<<<<< HEAD
 	variables(args: DebugProtocol.VariablesArguments): TPromise<DebugProtocol.VariablesResponse>;
 	source(args: DebugProtocol.SourceArguments): TPromise<DebugProtocol.SourceResponse>;
-=======
-	resolveVariables(args: DebugProtocol.VariablesArguments): TPromise<DebugProtocol.VariablesResponse>;
-	resolveSource(args: DebugProtocol.SourceArguments): TPromise<DebugProtocol.SourceResponse>;
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	threads(): TPromise<DebugProtocol.ThreadsResponse>;
 	evaluate(args: DebugProtocol.EvaluateArguments): TPromise<DebugProtocol.EvaluateResponse>;
 
@@ -289,24 +280,15 @@ export interface IDebugService extends ee.IEventEmitter {
 	getViewModel(): IViewModel;
 
 	openOrRevealEditor(source: Source, lineNumber: number, preserveFocus: boolean, sideBySide: boolean): Promise;
-<<<<<<< HEAD
 	revealRepl(inBackground?: boolean): Promise;
-=======
-	revealRepl(inBackground?:boolean): Promise;
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 }
 
 // Utils
 
 var _formatPIIRegexp = /{([^}]+)}/g;
 
-<<<<<<< HEAD
 export function formatPII(value: string, excludePII: boolean, args: { [key: string]: string }): string {
 	return value.replace(_formatPIIRegexp, function (match, group) {
-=======
-export function formatPII(value:string, excludePII: boolean, args: {[key: string]: string}): string {
-	return value.replace(_formatPIIRegexp, function(match, group) {
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		if (excludePII && group.length > 0 && group[0] !== '_') {
 			return match;
 		}

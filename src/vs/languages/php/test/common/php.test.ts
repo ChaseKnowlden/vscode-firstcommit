@@ -32,11 +32,7 @@ suite('Syntax Highlighting - PHP', () => {
 	});
 
 	test('', () => {
-<<<<<<< HEAD
 		modesUtil.executeTests(tokenizationSupport, [
-=======
-	 	modesUtil.executeTests(tokenizationSupport, [
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 			// Bug 13596:[ErrorTelemetry] Stream did not advance while tokenizing. Mode id is php (stuck)
 			// We're testing the fact that tokenize does not throw
@@ -1920,11 +1916,7 @@ suite('Syntax Highlighting - PHP', () => {
 				{ startIndex:17, type: '' },
 				{ startIndex:18, type: 'metatag.php', bracket: Modes.Bracket.Close }
 			]}]
-<<<<<<< HEAD
 		]);
-=======
-		 ]);
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	});
 
 	test('Word definition', function() {

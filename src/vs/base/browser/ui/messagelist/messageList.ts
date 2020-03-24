@@ -7,7 +7,6 @@
 
 import 'vs/css!./messageList';
 import nls = require('vs/nls');
-<<<<<<< HEAD
 import { Promise } from 'vs/base/common/winjs.base';
 import { Builder, withElementById, $ } from 'vs/base/browser/builder';
 import DOM = require('vs/base/browser/dom');
@@ -16,16 +15,6 @@ import types = require('vs/base/common/types');
 import { EventProvider } from 'vs/base/common/eventProvider';
 import { EventSource } from 'vs/base/common/eventSource';
 import { Action } from 'vs/base/common/actions';
-=======
-import {Promise} from 'vs/base/common/winjs.base';
-import {Builder, withElementById, $} from 'vs/base/browser/builder';
-import DOM = require('vs/base/browser/dom');
-import errors = require('vs/base/common/errors');
-import types = require('vs/base/common/types');
-import {EventProvider} from 'vs/base/common/eventProvider';
-import {EventSource} from 'vs/base/common/eventSource';
-import {Action} from 'vs/base/common/actions';
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 import htmlRenderer = require('vs/base/browser/htmlContentRenderer');
 
 export enum Severity {
@@ -308,7 +297,6 @@ export class MessageList {
 		this.hideMessage();
 	}
 
-<<<<<<< HEAD
 	public show(): void {
 		if (this.messageListContainer && this.messageListContainer.isHidden()) {
 			this.messageListContainer.show();
@@ -321,8 +309,6 @@ export class MessageList {
 		}
 	}
 
-=======
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	private hideMessage(messageText?: string): void;
 	private hideMessage(messageObj?: any): void {
 		let messageFound = false;

@@ -12,11 +12,7 @@ import nls = require('vs/nls');
 import uri from 'vs/base/common/uri';
 import platform = require('vs/base/common/platform');
 import errors = require('vs/base/common/errors');
-<<<<<<< HEAD
 import { Promise, TPromise } from 'vs/base/common/winjs.base';
-=======
-import { Promise, TPromise} from 'vs/base/common/winjs.base';
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 import severity from 'vs/base/common/severity';
 import actions = require('vs/base/common/actions');
 import debug = require('vs/workbench/parts/debug/common/debug');
@@ -51,19 +47,11 @@ export class RawDebugSession extends v8.V8Protocol implements debug.IRawDebugSes
 
 		const serverPromise = this.debugServerPort ? this.connectServer(this.debugServerPort) : this.startServer();
 		this.cachedInitServer = serverPromise.then(() => {
-<<<<<<< HEAD
 			this.startTime = new Date().getTime();
 		}, err => {
 			this.cachedInitServer = null;
 			return Promise.wrapError(err);
 		}
-=======
-				this.startTime = new Date().getTime();
-			}, err => {
-				this.cachedInitServer = null;
-				return Promise.wrapError(err);
-			}
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		);
 
 		return this.cachedInitServer;
@@ -74,11 +62,7 @@ export class RawDebugSession extends v8.V8Protocol implements debug.IRawDebugSes
 			var error = errorResponse.body ? errorResponse.body.error : null;
 			var message = error ? debug.formatPII(error.format, false, error.variables) : errorResponse.message;
 			if (error && error.sendTelemetry) {
-<<<<<<< HEAD
 				this.telemetryService.publicLog('debugProtocolErrorResponse', { error: message });
-=======
-				this.telemetryService.publicLog('debugProtocolErrorResponse', { error : message });
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 			}
 
 			return Promise.wrapError(new Error(message));
@@ -97,11 +81,7 @@ export class RawDebugSession extends v8.V8Protocol implements debug.IRawDebugSes
 		return this.sendAndLazyEmit('attach', args);
 	}
 
-<<<<<<< HEAD
 	public next(args: DebugProtocol.NextArguments): TPromise<DebugProtocol.NextResponse> {
-=======
-	public stepOver(args: DebugProtocol.NextArguments): TPromise<DebugProtocol.NextResponse> {
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		return this.sendAndLazyEmit('next', args);
 	}
 
@@ -166,19 +146,11 @@ export class RawDebugSession extends v8.V8Protocol implements debug.IRawDebugSes
 		return this.send('scopes', args);
 	}
 
-<<<<<<< HEAD
 	public variables(args: DebugProtocol.VariablesArguments): TPromise<DebugProtocol.VariablesResponse> {
 		return this.send('variables', args);
 	}
 
 	public source(args: DebugProtocol.SourceArguments): TPromise<DebugProtocol.SourceResponse> {
-=======
-	public resolveVariables(args: DebugProtocol.VariablesArguments): TPromise<DebugProtocol.VariablesResponse> {
-		return this.send('variables', args);
-	}
-
-	public resolveSource(args: DebugProtocol.SourceArguments): TPromise<DebugProtocol.SourceResponse> {
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		return this.send('source', args);
 	}
 
@@ -214,11 +186,7 @@ export class RawDebugSession extends v8.V8Protocol implements debug.IRawDebugSes
 
 	private startServer(): Promise {
 		if (!this.adapter.program) {
-<<<<<<< HEAD
 			return Promise.wrapError(new Error(`No extension installed for '${this.adapter.type}' debugging.`));
-=======
-			return Promise.wrapError(new Error(`No extension installed for '${ this.adapter.type }' debugging.`));
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		}
 
 		return this.getLaunchDetails().then(d => this.launchServer(d).then(() => {
@@ -242,11 +210,7 @@ export class RawDebugSession extends v8.V8Protocol implements debug.IRawDebugSes
 			if (launch.command === 'node') {
 				stdfork.fork(launch.argv[0], [], {}, (err, child) => {
 					if (err) {
-<<<<<<< HEAD
 						e(new Error(`Unable to launch debug adapter from ${launch.argv[0]}.`));
-=======
-						e(new Error(`Unable to launch debug adapter from ${ launch.argv[0] }.`));
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 					}
 					this.serverProcess = child;
 					c(true);

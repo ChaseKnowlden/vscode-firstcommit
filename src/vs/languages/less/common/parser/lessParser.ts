@@ -49,11 +49,7 @@ export class LessParser extends cssParser.Parser {
 	}
 
 	public _parseMediaQuery(resyncStopToken: scanner.TokenType[]): nodes.Node {
-<<<<<<< HEAD
 		var node = <nodes.MediaQuery> super._parseMediaQuery(resyncStopToken);
-=======
- 		var node = <nodes.MediaQuery> super._parseMediaQuery(resyncStopToken);
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		if (!node) {
 			var node = <nodes.MediaQuery> this.create(nodes.MediaQuery);
 			if (node.addChild(this._parseVariable())) {

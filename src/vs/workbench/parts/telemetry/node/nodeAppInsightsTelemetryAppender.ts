@@ -67,19 +67,11 @@ export class NodeAppInsightsTelemetryAppender implements ITelemetryAppender {
 
 		if (key) {
 			this.appInsights = appInsights.setup(key)
-<<<<<<< HEAD
 			.setAutoCollectRequests(false)
 			.setAutoCollectPerformance(false)
 			.setAutoCollectExceptions(false)
 			.setOfflineMode(true)
 			.start()
-=======
-		    .setAutoCollectRequests(false)
-		    .setAutoCollectPerformance(false)
-		    .setAutoCollectExceptions(false)
-			.setOfflineMode(true)
-		    .start()
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 			.client;
 
 			this.setupAIClient(this.appInsights);
@@ -99,11 +91,7 @@ export class NodeAppInsightsTelemetryAppender implements ITelemetryAppender {
 		if (client && client.context &&
 			client.context.keys && client.context.tags) {
 			var machineNameKey = client.context.keys.deviceMachineName;
-<<<<<<< HEAD
 			client.context.tags[machineNameKey] = '';
-=======
-		 	client.context.tags[machineNameKey] = '';
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		}
 	}
 

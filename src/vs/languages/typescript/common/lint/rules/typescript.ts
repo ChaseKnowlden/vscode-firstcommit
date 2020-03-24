@@ -231,11 +231,7 @@ export class UnusedFunctions implements rules.IStyleRule2<ts.FunctionDeclaration
 		}
 
 		var position = ts.getTokenPosOfNode(node.name),
-<<<<<<< HEAD
 			entries = context.languageService().getOccurrencesAtPosition(context.filename(), position);
-=======
-		    entries = context.languageService().getOccurrencesAtPosition(context.filename(), position);
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 		if(entries && entries.length <= 1) {
 			context.reportError(node.name, this.name, this.code, position);

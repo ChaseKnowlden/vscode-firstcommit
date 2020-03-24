@@ -40,7 +40,6 @@
 			"stopOnEntry": false,
 			"sourceMaps": true,
 			"outDir": "out"
-<<<<<<< HEAD
 		},
 		{
 			"name": "Attach to VSCode",
@@ -49,8 +48,6 @@
 			"port": 9222,
 			"sourceMaps": true,
 			"outDir": "out"
-=======
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		}
 	]
 }

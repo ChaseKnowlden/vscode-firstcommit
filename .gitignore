@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .DS_Store
 npm-debug.log
 Thumbs.db
@@ -11,18 +10,4 @@ out-editor-ossfree/
 out-editor-ossfree-min/
 out-vscode/
 out-vscode-min/
-=======
-.DS_Store
-npm-debug.log
-Thumbs.db
-node_modules/
-out/
-out-build/
-out-editor/
-out-editor-min/
-out-editor-ossfree/
-out-editor-ossfree-min/
-out-vscode/
-out-vscode-min/
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 build/node_modules

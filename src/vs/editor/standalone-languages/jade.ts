@@ -8,15 +8,9 @@
 import {ILanguage} from './types';
 
 export var language = <ILanguage> {
-<<<<<<< HEAD
 	displayName:    'Jade',
 	name:           'jade',
 	defaultToken:   '',
-=======
-  displayName:    'Jade',
-  name:           'jade',
-  defaultToken:   '',
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 	ignoreCase: true,
 
@@ -82,11 +76,7 @@ export var language = <ILanguage> {
 			{ include: '@whitespace' },
 
 			// keywords
-<<<<<<< HEAD
 			[/[a-zA-Z_$][\w$]*/, { cases: { '@keywords': {token:'keyword.$0'},
-=======
-	  		[/[a-zA-Z_$][\w$]*/, { cases: { '@keywords': {token:'keyword.$0'},
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 											'@default': '' } }],
 
 			// delimiters and operators

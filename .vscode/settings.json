@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
 	"editor.insertSpaces": false,
 	"files.trimTrailingWhitespace": true,
@@ -13,20 +12,4 @@
 		"out*/**": true,
 		"extensions/**/out/**": true
 	}
-=======
-{
-	"editor.insertSpaces": false,
-	"files.trimTrailingWhitespace": true,
-	"files.exclude": {
-		".git": true,
-		"**/.DS_Store": true,
-		"**/coverage": true
-	},
-	"search.exclude": {
-		"**/node_modules/**": true,
-		"**/bower_components": true,
-		"out*/**": true,
-		"extensions/**/out/**": true
-	}
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 }

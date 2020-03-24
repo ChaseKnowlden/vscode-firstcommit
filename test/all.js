@@ -77,13 +77,8 @@ function main() {
 	});
 
 	var loaderConfig = {
-<<<<<<< HEAD
 		nodeRequire: require,
 		nodeMain: __filename,
-=======
-	    nodeRequire: require,
-	    nodeMain: __filename,
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		baseUrl: path.join(path.dirname(__dirname)),
 		paths: {
 			'vs': out + '/vs',
