@@ -11,12 +11,12 @@ import Shell = require('shell');
 import screen = require('screen');
 import BrowserWindow = require('browser-window');
 
-import {TPromise, TValueCallback} from 'vs/base/common/winjs.base';
+import { TPromise, TValueCallback } from 'vs/base/common/winjs.base';
 import platform = require('vs/base/common/platform');
 import objects = require('vs/base/common/objects');
 import env = require('vs/workbench/electron-main/env');
 import storage = require('vs/workbench/electron-main/storage');
-import {IEnv} from 'vs/base/node/env';
+import { IEnv } from 'vs/base/node/env';
 
 export interface IWindowState {
 	width?: number;
@@ -32,7 +32,7 @@ export enum WindowMode {
 	Minimized
 }
 
-export const defaultWindowState = function(mode = WindowMode.Normal): IWindowState {
+export const defaultWindowState = function (mode = WindowMode.Normal): IWindowState {
 	return {
 		width: 1024,
 		height: 768,
@@ -373,10 +373,7 @@ export class VSCodeWindow {
 			configuration.logPluginHostCommunication = cli.logPluginHostCommunication;
 			configuration.debugPluginHostPort = cli.debugPluginHostPort;
 			configuration.debugBrkPluginHost = cli.debugBrkPluginHost;
-<<<<<<< HEAD
 			configuration.pluginHomePath = cli.pluginHomePath;
-=======
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		}
 
 		// Load config

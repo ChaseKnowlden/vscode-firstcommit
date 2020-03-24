@@ -325,7 +325,6 @@ export var debuggersExtPoint = pluginsRegistry.PluginsRegistry.registerExtension
 	default: [{ type: '', extensions: [] }],
 	items: {
 		type: 'object',
-<<<<<<< HEAD
 		default: { type: '', program: '', runtime: '', enableBreakpointsFor: { languageIds: [''] } },
 		properties: {
 			type: {
@@ -342,20 +341,6 @@ export var debuggersExtPoint = pluginsRegistry.PluginsRegistry.registerExtension
 				properties: {
 					languageIds: {
 						description: nls.localize('vscode.extension.contributes.debuggers.enableBreakpointsFor.languageIds', "List of languages."),
-=======
-		default: { type: '', program: '', runtime: '', enableBreakpointsFor: { languageIds: [ '' ] } },
-		properties: {
-			type: {
-				description: nls.localize('vscode.extension.contributes.debuggers.type', 'Unique identifier for this debug adapter.'),
-				type: 'string'
-			},
-			enableBreakpointsFor: {
-				description: nls.localize('vscode.extension.contributes.debuggers.enableBreakpointsFor', 'Allow breakpoints for these languages.'),
-				type: 'object',
-				properties: {
-					languageIds : {
-						description: nls.localize('vscode.extension.contributes.debuggers.enableBreakpointsFor.languageIds', 'List of languages.'),
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 						type: 'array',
 						items: {
 							type: 'string'
@@ -364,7 +349,6 @@ export var debuggersExtPoint = pluginsRegistry.PluginsRegistry.registerExtension
 				}
 			},
 			program: {
-<<<<<<< HEAD
 				description: nls.localize('vscode.extension.contributes.debuggers.program', "Path to the debug adapter program. Path is either absolute or relative to the extension folder."),
 				type: 'string'
 			},
@@ -390,69 +374,26 @@ export var debuggersExtPoint = pluginsRegistry.PluginsRegistry.registerExtension
 				properties: {
 					runtime: {
 						description: nls.localize('vscode.extension.contributes.debuggers.windows.runtime', "Runtime used for Windows."),
-=======
-				description: nls.localize('vscode.extension.contributes.debuggers.program', 'Path to the debug adapter program. Path is either absolute or relative to the extension folder.'),
-				type: 'string'
-			},
-			runtime : {
-				description: nls.localize('vscode.extension.contributes.debuggers.runtime', 'Optional runtime in case the program attribute is not an executable but requires a runtime.'),
-				type: 'string'
-			},
-			runtimeArgs : {
-				description: nls.localize('vscode.extension.contributes.debuggers.runtimeArgs', 'Optional runtime arguments.'),
-				type: 'array'
-			},
-			initialConfigurations: {
-				description: nls.localize('vscode.extension.contributes.debuggers.initialConfigurations', 'Configurations for generating the initial \'launch.json\'.'),
-				type: 'array',
-			},
-			configurationAttributes: {
-				description: nls.localize('vscode.extension.contributes.debuggers.configurationAttributes', 'JSON schema configurations for validating \'launch.json\'.'),
-				type: 'object'
-			},
-			windows: {
-				description: nls.localize('vscode.extension.contributes.debuggers.windows', 'Windows specific settings.'),
-				type: 'object',
-				properties: {
-					runtime : {
-						description: nls.localize('vscode.extension.contributes.debuggers.windows.runtime', 'Runtime used for Windows.'),
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 						type: 'string'
 					}
 				}
 			},
 			osx: {
-<<<<<<< HEAD
 				description: nls.localize('vscode.extension.contributes.debuggers.osx', "OS X specific settings."),
 				type: 'object',
 				properties: {
 					runtime: {
 						description: nls.localize('vscode.extension.contributes.debuggers.osx.runtime', "Runtime used for OSX."),
-=======
-				description: nls.localize('vscode.extension.contributes.debuggers.osx', 'OS X specific settings.'),
-				type: 'object',
-				properties: {
-					runtime : {
-						description: nls.localize('vscode.extension.contributes.debuggers.osx.runtime', 'Runtime used for OSX.'),
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 						type: 'string'
 					}
 				}
 			},
 			linux: {
-<<<<<<< HEAD
 				description: nls.localize('vscode.extension.contributes.debuggers.linux', "Linux specific settings."),
 				type: 'object',
 				properties: {
 					runtime: {
 						description: nls.localize('vscode.extension.contributes.debuggers.linux.runtime', "Runtime used for Linux."),
-=======
-				description: nls.localize('vscode.extension.contributes.debuggers.linux', 'Linux specific settings.'),
-				type: 'object',
-				properties: {
-					runtime : {
-						description: nls.localize('vscode.extension.contributes.debuggers.linux.runtime', 'Runtime used for Linux.'),
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 						type: 'string'
 					}
 				}
@@ -469,39 +410,15 @@ export var schema: IJSONSchema = {
 	type: 'object',
 	title: nls.localize('app.launch.json.title', "Launch configuration"),
 	required: ['version', 'configurations'],
-<<<<<<< HEAD
 	properties: {
 		version: {
 			type: 'string',
 			description: nls.localize('app.launch.json.version', "Version of this file format."),
-=======
-	default: {
-		version: '0.2.0',
-		configurations: [{
-			name: 'Launch',
-			type: 'node',
-			request: 'launch'
-		}, {
-			name: 'Attach',
-			type: 'node',
-			request: 'attach',
-			port: 5858
-		}]
-	},
-	properties: {
-		version: {
-			type: 'string',
-			description: nls.localize('app.launch.json.version', 'Version of this file format.'),
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 			default: '0.2.0'
 		},
 		configurations: {
 			type: 'array',
-<<<<<<< HEAD
 			description: nls.localize('app.launch.json.configurations', "List of configurations. Add new configurations or edit existing ones."),
-=======
-			description: nls.localize('app.launch.json.configurations', 'List of configurations. Add new configurations or edit existing ones.'),
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 			items: {
 				oneOf: []
 			}
