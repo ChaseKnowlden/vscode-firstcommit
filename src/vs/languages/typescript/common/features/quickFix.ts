@@ -104,7 +104,6 @@ function computeRenameProposals(languageService:ts.LanguageService, resource:URI
 		}
 
 		switch (entry.kind) {
-<<<<<<< HEAD
 			case ts.ScriptElementKind.classElement:
 			case ts.ScriptElementKind.interfaceElement:
 			case ts.ScriptElementKind.typeElement:
@@ -123,26 +122,6 @@ function computeRenameProposals(languageService:ts.LanguageService, resource:URI
 			case ts.ScriptElementKind.constructSignatureElement:
 			case ts.ScriptElementKind.parameterElement:
 			case ts.ScriptElementKind.primitiveType:
-=======
-	        case ts.ScriptElementKind.classElement:
-	        case ts.ScriptElementKind.interfaceElement:
-	        case ts.ScriptElementKind.typeElement:
-	        case ts.ScriptElementKind.enumElement:
-	        case ts.ScriptElementKind.variableElement:
-	        case ts.ScriptElementKind.localVariableElement:
-	        case ts.ScriptElementKind.functionElement:
-	        case ts.ScriptElementKind.localFunctionElement:
-	        case ts.ScriptElementKind.memberFunctionElement:
-	        case ts.ScriptElementKind.memberGetAccessorElement:
-	        case ts.ScriptElementKind.memberSetAccessorElement:
-	        case ts.ScriptElementKind.memberVariableElement:
-	        case ts.ScriptElementKind.constructorImplementationElement:
-	        case ts.ScriptElementKind.callSignatureElement:
-	        case ts.ScriptElementKind.indexSignatureElement:
-	        case ts.ScriptElementKind.constructSignatureElement:
-	        case ts.ScriptElementKind.parameterElement:
-	        case ts.ScriptElementKind.primitiveType:
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 				var score = strings.difference(currentWord, entry.name);
 				if (score < currentWord.length / 2 /*score_lim*/) {

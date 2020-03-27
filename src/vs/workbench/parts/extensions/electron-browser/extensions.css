@@ -67,11 +67,7 @@
 }
 
 .quick-open-widget .extension .actions .action-item {
-<<<<<<< HEAD
 	line-height: 12px;
-=======
-	line-height: 15px;
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 }
 
 .quick-open-widget .extension .actions .action-label {
@@ -89,7 +85,6 @@
 
 .quick-open-widget .extension .actions .action-label:not(.icon) {
 	padding: 1px 3px;
-<<<<<<< HEAD
 	display: inline-block;
 	width: auto;
 	font-size: x-small;
@@ -99,14 +94,6 @@
 	animation: move-background 0.5s linear infinite;
 	background-color: rgba(132, 132, 132, 0.5);
 	background-size: 8px;
-=======
-}
-
-.quick-open-widget .extension .actions .action-item.disabled .action-label {
-  animation: move-background 0.5s linear infinite;
-  background-color: rgba(132, 132, 132, 0.5);
-  background-size: 8px;
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.5) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0.5) 75%, transparent 75%, transparent);
 	color: rgb(0, 0, 0);
 	border-color: rgb(0, 0, 0);

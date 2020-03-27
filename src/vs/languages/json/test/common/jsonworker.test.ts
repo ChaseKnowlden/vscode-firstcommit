@@ -55,11 +55,7 @@ suite('JSON - Worker', () => {
 		}
 	}
 
-<<<<<<< HEAD
 	var testSuggestionsFor = function(value:string, stringAfter:string, schema?:jsonSchema.IJSONSchema):WinJS.TPromise<Modes.ISuggestions> {
-=======
- 	var testSuggestionsFor = function(value:string, stringAfter:string, schema?:jsonSchema.IJSONSchema):WinJS.TPromise<Modes.ISuggestions> {
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		var url = new network.URL('test://test.json');
 		var env = mockWorkerEnv(url, value);
 		prepareSchemaServer(schema, env.worker);
@@ -76,11 +72,7 @@ suite('JSON - Worker', () => {
 		return env.worker.computeInfo(url, position);
 	}
 
-<<<<<<< HEAD
 	var testValueSetFor = function(value:string, schema:jsonSchema.IJSONSchema, selection:string, selectionLength: number, up: boolean):WinJS.TPromise<Modes.IInplaceReplaceSupportResult> {
-=======
- 	var testValueSetFor = function(value:string, schema:jsonSchema.IJSONSchema, selection:string, selectionLength: number, up: boolean):WinJS.TPromise<Modes.IInplaceReplaceSupportResult> {
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 		var url = new network.URL('test://test.json');
 		var env = mockWorkerEnv(url, value);
 		prepareSchemaServer(schema, env.worker);

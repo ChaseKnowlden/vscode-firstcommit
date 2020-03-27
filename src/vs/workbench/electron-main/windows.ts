@@ -27,8 +27,8 @@ import arrays = require('vs/base/common/arrays');
 import objects = require('vs/base/common/objects');
 import storage = require('vs/workbench/electron-main/storage');
 import settings = require('vs/workbench/electron-main/settings');
-import {Instance as UpdateManager, IUpdate} from 'vs/workbench/electron-main/update-manager';
-import {IEnv} from 'vs/base/node/env';
+import { Instance as UpdateManager, IUpdate } from 'vs/workbench/electron-main/update-manager';
+import { IEnv } from 'vs/base/node/env';
 
 const eventEmitter = new events.EventEmitter();
 
@@ -122,7 +122,7 @@ export class WindowsManager {
 	}
 
 	private registerListeners(): void {
-		app.on('activate', (event:Event, hasVisibleWindows:boolean) => {
+		app.on('activate', (event: Event, hasVisibleWindows: boolean) => {
 			env.log('App#activate');
 
 			// Mac only event: reopen last window when we get activated
@@ -671,10 +671,7 @@ export class WindowsManager {
 				configuration.logPluginHostCommunication = currentWindowConfig.logPluginHostCommunication;
 				configuration.debugBrkPluginHost = currentWindowConfig.debugBrkPluginHost;
 				configuration.debugPluginHostPort = currentWindowConfig.debugPluginHostPort;
-<<<<<<< HEAD
 				configuration.pluginHomePath = currentWindowConfig.pluginHomePath;
-=======
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 			}
 		}
 

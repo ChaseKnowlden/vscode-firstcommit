@@ -121,7 +121,6 @@ export class Emitter<T> {
  * Creates an Event which is backed-up by the event emitter. This allows
  * to use the existing eventing pattern and is likely using less memeory.
  * Sample:
-<<<<<<< HEAD
  *
  * 	class Document {
  *
@@ -139,25 +138,6 @@ export class Emitter<T> {
  *			this._eventbus.emit('changed', value)
  *		}
  *	}
-=======
-
- 	class Document {
-
-		private _eventbus = new EventEmitter();
-
-		public onDidChange = fromEventEmitter(this._eventbus, 'changed');
-
-		// getter-style
-		// get onDidChange(): Event<(value:string)=>any> {
-		// 	cache fromEventEmitter result and return
-		// }
-
-		private _doIt() {
-			// ...
-			this._eventbus.emit('changed', value)
-		}
-	}
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
  */
 export function fromEventEmitter<T>(emitter: EventEmitter, eventType: string): Event<T> {
 	return function (listener: (e: T) => any, thisArgs?: any, disposables?: IDisposable[]): IDisposable {

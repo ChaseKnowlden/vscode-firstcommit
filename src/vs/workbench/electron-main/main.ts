@@ -11,18 +11,13 @@ import dialog = require('dialog');
 import shell = require('shell');
 
 import nls = require('vs/nls');
-<<<<<<< HEAD
 import { assign } from 'vs/base/common/objects';
-=======
-import {assign} from 'vs/base/common/objects';
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 import platform = require('vs/base/common/platform');
 import env = require('vs/workbench/electron-main/env');
 import windows = require('vs/workbench/electron-main/windows');
 import lifecycle = require('vs/workbench/electron-main/lifecycle');
 import menu = require('vs/workbench/electron-main/menus');
 import settings = require('vs/workbench/electron-main/settings');
-<<<<<<< HEAD
 import { Instance as UpdateManager } from 'vs/workbench/electron-main/update-manager';
 import { Server, serve, connect } from 'vs/base/node/service.net';
 import { getUserEnvironment, IEnv } from 'vs/base/node/env';
@@ -30,14 +25,6 @@ import { Promise, TPromise } from 'vs/base/common/winjs.base';
 import { GitAskpassService } from 'vs/workbench/parts/git/electron-main/askpassService';
 import { spawnSharedProcess } from 'vs/workbench/parts/sharedProcess/node/sharedProcess';
 import { renderVariable } from '../parts/debug/browser/debugViewer';
-=======
-import {Instance as UpdateManager} from 'vs/workbench/electron-main/update-manager';
-import {Server, serve, connect} from 'vs/base/node/service.net';
-import {getUserEnvironment, IEnv} from 'vs/base/node/env';
-import {Promise, TPromise} from 'vs/base/common/winjs.base';
-import {GitAskpassService} from 'vs/workbench/parts/git/electron-main/askpassService';
-import { spawnSharedProcess } from 'vs/workbench/parts/sharedProcess/node/sharedProcess';
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 
 export class LaunchService {
 	public start(args: env.ICommandLineArguments): Promise {
@@ -110,13 +97,8 @@ function main(ipcServer: Server, userEnv: IEnv): void {
 	// This will help Windows to associate the running program with
 	// any shortcut that is pinned to the taskbar and prevent showing
 	// two icons in the taskbar for the same app.
-<<<<<<< HEAD
 	if (platform.isWindows && env.product.win32AppUserModelId) {
 		app.setAppUserModelId(env.product.win32AppUserModelId);
-=======
-	if (platform.isWindows) {
-		app.setAppUserModelId('Microsoft.VisualStudioCode');
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	}
 
 	// Set programStart in the global scope
