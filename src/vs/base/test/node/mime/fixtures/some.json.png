@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
 	"type": "typescript",
 
@@ -9,16 +8,4 @@
 		"examples/large.ts",
 		"examples/small.ts"
 	]
-=======
-{
-	"type": "typescript",
-
-	"sources": [
-		"examples/company.ts",
-		"examples/conway.ts",
-		"examples/employee.ts",
-		"examples/large.ts",
-		"examples/small.ts"
-	]
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 }

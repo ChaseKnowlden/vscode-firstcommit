@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .vscode/**
 typings/**
 out/test/**
@@ -8,14 +7,3 @@ test/**
 .gitignore
 tsconfig.json
 vsc-extension-quickstart.md
-=======
-.vscode/**
-typings/**
-out/test/**
-test/**
-**/*.ts
-**/*.map
-.gitignore
-tsconfig.json
-vsc-extension-quickstart.md
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d

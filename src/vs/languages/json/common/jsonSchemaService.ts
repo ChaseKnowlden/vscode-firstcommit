@@ -1321,7 +1321,6 @@ export class JSONSchemaService implements IJSONSchemaService {
 						'type': 'object',
 						'description': nls.localize('global.json.sdk', 'The runtime to use.'),
 						'properties': {
-<<<<<<< HEAD
 							'version': {
 								'type': 'string',
 								'description': nls.localize('global.json.sdk.version', 'The runtime version to use.')
@@ -1334,20 +1333,6 @@ export class JSONSchemaService implements IJSONSchemaService {
 								'type': 'string',
 								'description': nls.localize('global.json.sdk.architecture', 'The runtime architecture to use, e.g. x64.')
 							}
-=======
-							 'version': {
-								'type': 'string',
-								'description': nls.localize('global.json.sdk.version', 'The runtime version to use.')
-							 },
-							 'runtime': {
-								'type': 'string',
-								'description': nls.localize('global.json.sdk.runtime', 'The runtime to use, e.g. coreclr'),
-							 },
-							 'architecture': {
-								'type': 'string',
-								'description': nls.localize('global.json.sdk.architecture', 'The runtime architecture to use, e.g. x64.')
-							 }
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 						}
 					}
 				}
@@ -1494,19 +1479,11 @@ export class JSONSchemaService implements IJSONSchemaService {
 						'experimentalDecorators': {
 							'description': nls.localize('tsconfig.json.compilerOptions.experimentalDecorators', 'Enables experimental support for ES7 decorators.'),
 							'type': 'boolean'
-<<<<<<< HEAD
 						},
 						'experimentalAsyncFunctions': {
 							'description': nls.localize('tsconfig.json.compilerOptions.experimentalAsynFunctions', 'Enables experimental support for async functions (requires TypeScript 1.6).'),
 							'type': 'boolean'
 						}
-=======
-				        },
-						'experimentalAsyncFunctions': {
-							'description': nls.localize('tsconfig.json.compilerOptions.experimentalAsynFunctions', 'Enables experimental support for async functions (requires TypeScript 1.6).'),
-							'type': 'boolean'
-				        }
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 					}
 				},
 				'files': {

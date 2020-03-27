@@ -4,11 +4,7 @@ microsoft-vscode
 THIRD-PARTY SOFTWARE NOTICES AND INFORMATION
 Do Not Translate or Localize
 
-<<<<<<< HEAD
 This project incorporates components from the projects listed below. The original copyright notices and the licenses 
-=======
-This project incorporates components from the projects listed below. The original copyright notices and the licenses
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 under which Microsoft received such components are set forth below. Microsoft reserves all rights not expressly granted
 herein, whether by implication, estoppel or otherwise.
 
@@ -1566,8 +1562,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 =========================================
-<<<<<<< HEAD
 END OF vscode-swift NOTICES AND INFORMATION
-=======
-END OF vscode-swift NOTICES AND INFORMATION
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d

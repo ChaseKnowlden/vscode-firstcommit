@@ -23,11 +23,7 @@ suite('Sass Colorizer', () => {
 	});
 
 	test('', () => {
-<<<<<<< HEAD
 		modesUtil.executeTests(tokenizationSupport, [
-=======
-	 	modesUtil.executeTests(tokenizationSupport, [
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 			// Nested Rules
 			[{
 			line: '#main {\n  width: 97%;\n  p, div {\n    font-size: 2em;\n    a { font-weight: bold; }\n  }\n  pre { font-size: 3em; }\n}',
@@ -1823,11 +1819,7 @@ suite('Sass Colorizer', () => {
 				{ startIndex: 13, type: 'string.punctuation.sass' },
 				{ startIndex: 14, type: 'punctuation.sass' }
 			]}]
-<<<<<<< HEAD
 		]);
-=======
-		 ]);
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 	});
 
 	test('identifier escaping', function() {

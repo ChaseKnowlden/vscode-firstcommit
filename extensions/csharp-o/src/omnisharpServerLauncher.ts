@@ -35,11 +35,7 @@ export default function launch(cwd: string, args: string[]):Promise < { process:
 		} catch (err) {
 			reject(err);
 		}
-<<<<<<< HEAD
 	});
-=======
-	 });
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
 }
 
 function launchWindows(cwd: string, args: string[]): Promise<{ process: ChildProcess, command: string }> {

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Tests
 
 ## Run
@@ -30,37 +29,3 @@ The following command will create a `coverage` folder at the root of the workspa
 **Windows**
 
 	test\run --coverage
-=======
-# Tests
-
-## Run
-
-The best way to run the Code tests is from within VS Code. Simply press `CMD+Shift+T` (`Ctrl+Shift+T` on Windows) to launch the
-tests.
-
-If you wish to run the tests from a terminal, from the `vscode` folder run:
-
-OSX and Linux
-
-	./test/run.sh
-
-Windows
-
-	test\run
-
-## Debug
-
-You can use VS Code to debug your tests. Switch to the Debug viewlet, pick the `Unit Tests` debug target and press `Play`.
-
-## Coverage
-
-The following command will create a `coverage` folder at the root of the workspace:
-
-OSX and Linux
-
-	./test/run.sh --coverage
-
-Windows
-
-	test\run --coverage
->>>>>>> f315b8ece10915ec3be05e23f63bedcd7561a67d
