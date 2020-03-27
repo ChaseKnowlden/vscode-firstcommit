@@ -38,7 +38,7 @@
 		"debounce": "^1.0.0",
 		"event-stream": "^3.1.7",
 		"express": "^4.13.1",
-		"glob": "^5.0.13",
+		"glob": "^7.1.6",
 		"gulp": "^3.8.9",
 		"gulp-atom-electron": "^0.17.2",
 		"gulp-azure-storage": "^0.3.0",
