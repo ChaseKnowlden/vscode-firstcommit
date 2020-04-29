@@ -1043,6 +1043,11 @@
             "readable-stream": "~1.0.26-2"
           },
           "dependencies": {
+            "graceful-fs": {
+              "version": "4.1.15",
+              "resolved": "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.1.15.tgz",
+              "integrity": "sha512-6uHUhOPEBgQ24HM+r6b/QwWfZq+yiFcipKFrOFiBEnWdy5sdzYoi+pJeQaPI5qOLRFqWmAXUPQNsielzdLoecA=="
+            },
             "minimatch": {
               "version": "0.2.14",
               "resolved": "https://registry.npmjs.org/minimatch/-/minimatch-0.2.14.tgz",
@@ -3219,9 +3224,9 @@
       }
     },
     "graceful-fs": {
-      "version": "4.1.2",
-      "resolved": "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.1.2.tgz",
-      "integrity": "sha1-/iI5t1dJcuZ+QfgIgj+b+kqZHjc="
+      "version": "4.2.4",
+      "resolved": "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.4.tgz",
+      "integrity": "sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw=="
     },
     "graceful-readlink": {
       "version": "1.0.1",
