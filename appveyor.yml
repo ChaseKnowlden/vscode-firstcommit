@@ -1,6 +1,6 @@
 environment:
   ATOM_SHELL_INTERNAL_RUN_AS_NODE: 1
-	nodejs_version: "4.1.1"
+	nodejs_version: "4"
 
 install:
   - ps: Install-Product node $env:nodejs_version
