@@ -1,6 +1,6 @@
 {
   "name": "Code",
-  "version": "0.10.1",
+  "version": "0.10.3",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -1801,22 +1801,22 @@
       "dev": true
     },
     "escodegen": {
-      "version": "1.7.1",
-      "resolved": "https://registry.npmjs.org/escodegen/-/escodegen-1.7.1.tgz",
-      "integrity": "sha1-MOz89mypjcZ80v0WKr626vqM5vw=",
+      "version": "1.8.1",
+      "resolved": "https://registry.npmjs.org/escodegen/-/escodegen-1.8.1.tgz",
+      "integrity": "sha1-WltTr0aTEQvrsIZ6o0MN07cKEBg=",
       "dev": true,
       "requires": {
-        "esprima": "^1.2.2",
+        "esprima": "^2.7.1",
         "estraverse": "^1.9.1",
         "esutils": "^2.0.2",
-        "optionator": "^0.5.0",
+        "optionator": "^0.8.1",
         "source-map": "~0.2.0"
       },
       "dependencies": {
         "esprima": {
-          "version": "1.2.5",
-          "resolved": "https://registry.npmjs.org/esprima/-/esprima-1.2.5.tgz",
-          "integrity": "sha1-CZNQL+r2aBODJXVvMPmlH+7sEek=",
+          "version": "2.7.3",
+          "resolved": "https://registry.npmjs.org/esprima/-/esprima-2.7.3.tgz",
+          "integrity": "sha1-luO3DVd59q1JzQMmc9HDEnZ7pYE=",
           "dev": true
         },
         "source-map": {
@@ -2166,9 +2166,9 @@
       "dev": true
     },
     "fast-levenshtein": {
-      "version": "1.0.7",
-      "resolved": "https://registry.npmjs.org/fast-levenshtein/-/fast-levenshtein-1.0.7.tgz",
-      "integrity": "sha1-AXjc3uAjuSkFGTrwlZ6KdjnP3Lk=",
+      "version": "2.0.6",
+      "resolved": "https://registry.npmjs.org/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz",
+      "integrity": "sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=",
       "dev": true
     },
     "filename-regex": {
@@ -2176,16 +2176,6 @@
       "resolved": "https://registry.npmjs.org/filename-regex/-/filename-regex-2.0.1.tgz",
       "integrity": "sha1-wcS5vuPglyXdsQa3XB4wH+LxiyY=",
       "dev": true
-    },
-    "fileset": {
-      "version": "0.2.1",
-      "resolved": "https://registry.npmjs.org/fileset/-/fileset-0.2.1.tgz",
-      "integrity": "sha1-WI74lzxmI7KnbfRlEFaWuWqsgGc=",
-      "dev": true,
-      "requires": {
-        "glob": "5.x",
-        "minimatch": "2.x"
-      }
     },
     "fill-range": {
       "version": "4.0.0",
@@ -5298,9 +5288,9 @@
           "dev": true
         },
         "uglify-js": {
-          "version": "3.9.1",
-          "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-3.9.1.tgz",
-          "integrity": "sha512-JUPoL1jHsc9fOjVFHdQIhqEEJsQvfKDjlubcCilu8U26uZ73qOg8VsN8O1jbuei44ZPlwL7kmbAdM4tzaUvqnA==",
+          "version": "3.9.2",
+          "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-3.9.2.tgz",
+          "integrity": "sha512-zGVwKslUAD/EeqOrD1nQaBmXIHl1Vw371we8cvS8I6mYK9rmgX5tv8AAeJdfsQ3Kk5mGax2SVV/AizxdNGhl7Q==",
           "dev": true,
           "optional": true,
           "requires": {
@@ -5899,16 +5889,16 @@
       "dev": true
     },
     "istanbul": {
-      "version": "0.3.22",
-      "resolved": "https://registry.npmjs.org/istanbul/-/istanbul-0.3.22.tgz",
-      "integrity": "sha1-PhZNhQIf4ZyYXR8OfvDD4i0BLrY=",
+      "version": "0.4.5",
+      "resolved": "https://registry.npmjs.org/istanbul/-/istanbul-0.4.5.tgz",
+      "integrity": "sha1-ZcfXPUxNqE1POsMQuRj7C4Azczs=",
       "dev": true,
       "requires": {
         "abbrev": "1.0.x",
         "async": "1.x",
-        "escodegen": "1.7.x",
-        "esprima": "2.5.x",
-        "fileset": "0.2.x",
+        "escodegen": "1.8.x",
+        "esprima": "2.7.x",
+        "glob": "^5.0.15",
         "handlebars": "^4.0.1",
         "js-yaml": "3.x",
         "mkdirp": "0.5.x",
@@ -5936,9 +5926,9 @@
           }
         },
         "esprima": {
-          "version": "2.5.0",
-          "resolved": "https://registry.npmjs.org/esprima/-/esprima-2.5.0.tgz",
-          "integrity": "sha1-84ekb9NEwbGjm6+MIL+0O20AWMw=",
+          "version": "2.7.3",
+          "resolved": "https://registry.npmjs.org/esprima/-/esprima-2.7.3.tgz",
+          "integrity": "sha1-luO3DVd59q1JzQMmc9HDEnZ7pYE=",
           "dev": true
         },
         "js-yaml": {
@@ -6368,13 +6358,13 @@
       }
     },
     "levn": {
-      "version": "0.2.5",
-      "resolved": "https://registry.npmjs.org/levn/-/levn-0.2.5.tgz",
-      "integrity": "sha1-uo0znQykphDjo/FFucr0iAcVUFQ=",
+      "version": "0.3.0",
+      "resolved": "https://registry.npmjs.org/levn/-/levn-0.3.0.tgz",
+      "integrity": "sha1-OwmSTt+fCDwEkP3UwLxEIeBHZO4=",
       "dev": true,
       "requires": {
-        "prelude-ls": "~1.1.0",
-        "type-check": "~0.3.1"
+        "prelude-ls": "~1.1.2",
+        "type-check": "~0.3.2"
       }
     },
     "liftoff": {
@@ -7136,17 +7126,17 @@
       }
     },
     "optionator": {
-      "version": "0.5.0",
-      "resolved": "https://registry.npmjs.org/optionator/-/optionator-0.5.0.tgz",
-      "integrity": "sha1-t1qJlaLUF98ltuTjhi9QqohlE2g=",
+      "version": "0.8.3",
+      "resolved": "https://registry.npmjs.org/optionator/-/optionator-0.8.3.tgz",
+      "integrity": "sha512-+IW9pACdk3XWmmTXG8m3upGUJst5XRGzxMRjXzAuJ1XnIFNvfhjjIuYkDvysnPQ7qzqVzLt78BCruntqRhWQbA==",
       "dev": true,
       "requires": {
-        "deep-is": "~0.1.2",
-        "fast-levenshtein": "~1.0.0",
-        "levn": "~0.2.5",
-        "prelude-ls": "~1.1.1",
-        "type-check": "~0.3.1",
-        "wordwrap": "~0.0.2"
+        "deep-is": "~0.1.3",
+        "fast-levenshtein": "~2.0.6",
+        "levn": "~0.3.0",
+        "prelude-ls": "~1.1.2",
+        "type-check": "~0.3.2",
+        "word-wrap": "~1.2.3"
       }
     },
     "orchestrator": {
@@ -8991,6 +8981,12 @@
       "version": "0.0.12",
       "resolved": "https://registry.npmjs.org/winreg/-/winreg-0.0.12.tgz",
       "integrity": "sha1-BxBVVLoanQiXklHRKUdb/64wBrc="
+    },
+    "word-wrap": {
+      "version": "1.2.3",
+      "resolved": "https://registry.npmjs.org/word-wrap/-/word-wrap-1.2.3.tgz",
+      "integrity": "sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==",
+      "dev": true
     },
     "wordwrap": {
       "version": "0.0.3",
