@@ -13,6 +13,7 @@ import uri from 'vs/base/common/uri';
 import arrays = require('vs/base/common/arrays');
 import actions = require('vs/base/common/actions');
 import json = require('vs/base/common/json');
+import types = require('vs/base/common/types');
 import errors = require('vs/base/common/errors');
 import severity from 'vs/base/common/severity';
 import { Promise, TPromise } from 'vs/base/common/winjs.base';
@@ -30,6 +31,7 @@ import viewmodel = require('vs/workbench/parts/debug/common/debugViewModel');
 import debugactions = require('vs/workbench/parts/debug/browser/debugActions');
 import { Adapter } from 'vs/workbench/parts/debug/node/debugAdapter';
 import { Repl } from 'vs/workbench/parts/debug/browser/replEditor';
+import { Source } from 'vs/workbench/parts/debug/common/debugSource';
 import { Position } from 'vs/platform/editor/common/editor';
 import { ITaskService , TaskEvent, TaskType, TaskServiceEvents} from 'vs/workbench/parts/tasks/common/taskService';
 import { IViewletService } from 'vs/workbench/services/viewlet/common/viewletService';
@@ -49,7 +51,8 @@ import { IPluginService, IPluginDescription } from 'vs/platform/plugins/common/p
 import { IOutputService } from 'vs/workbench/parts/output/common/output';
 import { IKeybindingService, IKeybindingContextKey } from 'vs/platform/keybinding/common/keybindingService';
 import { IQuickOpenService } from 'vs/workbench/services/quickopen/browser/quickOpenService';
-import { IWindowService } from 'vs/workbench/services/window/electron-browser/windowService';
+import { IWindowService, IBroadcast } from 'vs/workbench/services/window/electron-browser/windowService';
+import { ILogEntry, PLUGIN_LOG_BROADCAST_CHANNEL } from 'vs/workbench/services/thread/electron-browser/threadService';
 
 var DEBUG_BREAKPOINTS_KEY = 'debug.breakpoint';
 var DEBUG_BREAKPOINTS_ACTIVATED_KEY = 'debug.breakpointactivated';
@@ -184,6 +187,89 @@ export class DebugService extends ee.EventEmitter implements debug.IDebugService
 
 		lifecycleService.onShutdown.add(this.store, this);
 		lifecycleService.onShutdown.add(this.dispose, this);
+
+		this.windowService.onBroadcast.add(this.onBroadcast, this);
+	}
+
+	private onBroadcast(broadcast: IBroadcast): void {
+		let session = this.getActiveSession();
+		if (!session || session.getType() !== 'extensionHost') {
+			return; // we are only intersted if we have an active debug session for extensionHost
+		}
+
+		// A plugin logged output, show it inside the REPL
+		if (broadcast.channel === PLUGIN_LOG_BROADCAST_CHANNEL) {
+			let extensionOutput: ILogEntry = broadcast.payload;
+			let sev = extensionOutput.severity === 'warn' ? severity.Warning : extensionOutput.severity === 'error' ? severity.Error : severity.Info;
+
+			let args: any[] = [];
+			try {
+				let parsed = JSON.parse(extensionOutput.arguments);
+				args.push(...Object.getOwnPropertyNames(parsed).map(o => parsed[o]));
+			} catch (error) {
+				args.push(extensionOutput.arguments);
+			}
+
+			// Add output for each argument logged
+			let simpleVals: any[] = [];
+			for (let i = 0; i < args.length; i++) {
+				let a = args[i];
+
+				// Undefined gets printed as 'undefined'
+				if (typeof a === 'undefined') {
+					simpleVals.push('undefined');
+				}
+
+				// Null gets printed as 'null'
+				else if (a === null) {
+					simpleVals.push('null');
+				}
+
+				// Objects & Arrays are special because we want to inspect them in the REPL
+				else if (types.isObject(a) || Array.isArray(a)) {
+
+					// Flush any existing simple values logged
+					if (simpleVals.length) {
+						this.logToRepl(simpleVals.join(' '), sev);
+						simpleVals = [];
+					}
+
+					// Show object
+					this.logToRepl(a, sev);
+				}
+
+				// String: watch out for % replacement directive
+				// String substitution and formatting @ https://developer.chrome.com/devtools/docs/console
+				else if (typeof a === 'string') {
+					let buf = '';
+
+					for (let j = 0, len = a.length; j < len; j++) {
+						if (a[j] === '%' && (a[j + 1] === 's' || a[j + 1] === 'i' || a[j + 1] === 'd')) {
+							i++; // read over substitution
+							buf += !types.isUndefinedOrNull(args[i]) ? args[i] : ''; // replace
+							j++; // read over directive
+						} else {
+							buf += a[j];
+						}
+					}
+
+					simpleVals.push(buf);
+				}
+
+				// number or boolean is joined together
+				else {
+					simpleVals.push(a);
+				}
+			}
+
+			// Flush simple values
+			if (simpleVals.length) {
+				this.logToRepl(simpleVals.join(' '), sev);
+			}
+
+			// Show repl
+			this.revealRepl(true /* in background */).done(null, errors.onUnexpectedError);
+		}
 	}
 
 	private registerSessionListeners(): void {
@@ -281,7 +367,7 @@ export class DebugService extends ee.EventEmitter implements debug.IDebugService
 	private loadBreakpoints(): debug.IBreakpoint[] {
 		try {
 			return JSON.parse(this.storageService.get(DEBUG_BREAKPOINTS_KEY, StorageScope.WORKSPACE, '[]')).map((breakpoint: any) => {
-				return new model.Breakpoint(new debug.Source(breakpoint.source.name, breakpoint.source.uri, breakpoint.source.reference), breakpoint.desiredLineNumber || breakpoint.lineNumber, breakpoint.enabled);
+				return new model.Breakpoint(new Source(breakpoint.source.name, breakpoint.source.uri, breakpoint.source.reference), breakpoint.desiredLineNumber || breakpoint.lineNumber, breakpoint.enabled);
 			});
 		} catch (e) {
 			return [];
@@ -661,7 +747,7 @@ export class DebugService extends ee.EventEmitter implements debug.IDebugService
 		return this.viewModel;
 	}
 
-	public openOrRevealEditor(source: debug.Source, lineNumber: number, preserveFocus: boolean, sideBySide: boolean): Promise {
+	public openOrRevealEditor(source: Source, lineNumber: number, preserveFocus: boolean, sideBySide: boolean): Promise {
 		const visibleEditors = this.editorService.getVisibleEditors();
 		for (var i = 0; i < visibleEditors.length; i++) {
 			const fileInput = wbeditorcommon.asFileEditorInput(visibleEditors[i].input);
@@ -713,7 +799,7 @@ export class DebugService extends ee.EventEmitter implements debug.IDebugService
 		);
 	}
 
-	private sourceIsUnavailable(source: debug.Source, sideBySide: boolean): Promise {
+	private sourceIsUnavailable(source: Source, sideBySide: boolean): Promise {
 		this.model.sourceIsUnavailable(source);
 		const editorInput = this.getDebugStringEditorInput(source, 'Source is not available.', 'text/plain');
 
@@ -759,7 +845,7 @@ export class DebugService extends ee.EventEmitter implements debug.IDebugService
 		});
 	}
 
-	private getDebugStringEditorInput(source: debug.Source, value: string, mtype: string): debuginputs.DebugStringEditorInput {
+	private getDebugStringEditorInput(source: Source, value: string, mtype: string): debuginputs.DebugStringEditorInput {
 		var filtered = this.debugStringEditorInputs.filter(input => input.getResource().toString() === source.uri.toString());
 
 		if (filtered.length === 0) {
@@ -795,7 +881,7 @@ export class DebugService extends ee.EventEmitter implements debug.IDebugService
 			this.model.getBreakpoints().filter(bp => this.model.areBreakpointsActivated() && bp.enabled && bp.source.uri.toString() === modelUri.toString()),
 			bp =>  `${ bp.desiredLineNumber }`
 		);
-		return this.session.setBreakpoints({ source: debug.Source.fromUri(modelUri).toRawSource(), lines: breakpointsToSend.map(bp => bp.desiredLineNumber) }).then(response => {
+		return this.session.setBreakpoints({ source: Source.fromUri(modelUri).toRawSource(), lines: breakpointsToSend.map(bp => bp.desiredLineNumber) }).then(response => {
 			let index = 0;
 			breakpointsToSend.forEach(bp => {
 				const lineNumber = response.body.breakpoints[index++].line;
