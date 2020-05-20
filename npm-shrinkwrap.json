@@ -14,6 +14,11 @@
         "through2": "^2.0.3"
       }
     },
+    "@types/node": {
+      "version": "14.0.4",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-14.0.4.tgz",
+      "integrity": "sha512-k3NqigXWRzQZVBDS5D1U70A5E8Qk4Kh+Ha/x4M8Bt9pF0X05eggfnC9+63Usc9Q928hRUIpIhTQaXsZwZBl4Ew=="
+    },
     "abbrev": {
       "version": "1.1.1",
       "resolved": "https://registry.npmjs.org/abbrev/-/abbrev-1.1.1.tgz",
@@ -2957,28 +2962,11 @@
       "dev": true
     },
     "getmac": {
-      "version": "1.0.7",
-      "resolved": "https://registry.npmjs.org/getmac/-/getmac-1.0.7.tgz",
-      "integrity": "sha1-lEYPl3hpjS4VmgPabBZWifIs3Wc=",
+      "version": "5.3.0",
+      "resolved": "https://registry.npmjs.org/getmac/-/getmac-5.3.0.tgz",
+      "integrity": "sha512-mo4my7AqohPFlDxgqXk6QIPwxcsC3kreT7hADdlW76b/um4W9XO92LexgkDcBZOP1Uf5BtSHf6p1GbnGhvTtCg==",
       "requires": {
-        "extract-opts": "^2.2.0"
-      },
-      "dependencies": {
-        "extract-opts": {
-          "version": "2.2.0",
-          "resolved": "https://registry.npmjs.org/extract-opts/-/extract-opts-2.2.0.tgz",
-          "integrity": "sha1-H6KOunNSxttID4hc63GkaBC+bX0=",
-          "requires": {
-            "typechecker": "~2.0.1"
-          },
-          "dependencies": {
-            "typechecker": {
-              "version": "2.0.8",
-              "resolved": "https://registry.npmjs.org/typechecker/-/typechecker-2.0.8.tgz",
-              "integrity": "sha1-6D2oS7ZMWEzLNFg4V2xAsDN9uC4="
-            }
-          }
-        }
+        "@types/node": "^14.0.4"
       }
     },
     "getobject": {
