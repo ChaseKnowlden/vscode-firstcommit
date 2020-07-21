@@ -166,6 +166,23 @@ class FileOnDiskEditorInput	extends ReadOnlyEditorInput {
 	public getLastModified(): number {
 		return this.lastModified;
 	}
+
+	public resolve(refresh?: boolean): TPromise<EditorModel> {
+
+		// Make sure our file from disk is resolved up to date
+		return this.fileService.resolveContent(this.fileResource).then(content => {
+			this.lastModified = content.mtime;
+
+			let codeEditorModel = this.modelService.getModel(this.resource);
+			if (!codeEditorModel) {
+				this.modelService.createModel(content.value, this.modeService.getOrCreateMode(this.mime), URL.fromUri(this.resource));
+			} else {
+				codeEditorModel.setValue(content.value);
+			}
+
+			return super.resolve(refresh);
+		})
+	}
 }
 
 // A message with action to resolve a 412 save conflict
@@ -185,18 +202,19 @@ class ResolveSaveConflictMessage implements IMessageWithAction {
 	) {
 		this.model = model;
 
+		const resource = model.getResource();
 		if (message) {
 			this.message = message;
 		} else {
-			this.message = nls.localize('staleSaveError', "Failed to save '{0}': The content on disk is newer. Click on **Compare** to compare your version with the one on disk.", paths.basename(this.model.getResource().fsPath));
+			this.message = nls.localize('staleSaveError', "Failed to save '{0}': The content on disk is newer. Click on **Compare** to compare your version with the one on disk.", paths.basename(resource.fsPath));
 		}
 
 		this.actions = [
 			new Action('workbench.files.action.resolveConflict', nls.localize('compareChanges', "Compare"), null, true, () => {
 				if (!this.model.isDisposed()) {
-					let mime = guessMimeTypes(this.model.getResource().fsPath).join(', ');
-					let originalInput = this.instantiationService.createInstance(ResourceEditorInput, paths.basename(this.model.getResource().fsPath), this.model.getResource().fsPath, this.model.getResource().toString(), mime, void 0, void 0, void 0);
-					let modifiedInput = this.instantiationService.createInstance(FileEditorInput, this.model.getResource(), mime, void 0);
+					let mime = guessMimeTypes(resource.fsPath).join(', ');
+					let originalInput = this.instantiationService.createInstance(FileOnDiskEditorInput, resource, mime, paths.basename(resource.fsPath), resource.fsPath);
+					let modifiedInput = this.instantiationService.createInstance(FileEditorInput, resource, mime, void 0);
 					let conflictInput = this.instantiationService.createInstance(ConflictResolutionDiffEditorInput, this.model, nls.localize('saveConflictDiffLabel', "{0} - on disk ↔ in {1}", modifiedInput.getName(), this.contextService.getConfiguration().env.appName), nls.localize('resolveSaveConflict', "{0} - Resolve save conflict", modifiedInput.getDescription()), originalInput, modifiedInput);
 
 					return this.editorService.openEditor(conflictInput).then(() => {
@@ -236,7 +254,7 @@ export class AcceptLocalChangesAction extends EditorInputAction {
 
 		// 1.) Get the diff editor model from cache (resolve(false)) to have access to the mtime of the file we currently show to the left
 		return conflictInput.resolve(false).then((diffModel: DiffEditorModel) => {
-			let knownLastModified = (<TextResourceEditorModel>diffModel.originalModel).getLastModified();
+			let knownLastModified = (<FileOnDiskEditorInput>conflictInput.originalInput).getLastModified();
 
 			// 2.) Revert the model to get the latest copy from disk and to have access to the mtime of the file now
 			return model.revert().then(() => {
@@ -276,7 +294,7 @@ export class AcceptLocalChangesAction extends EditorInputAction {
 					model.textEditorModel.setValue(localModelValue);
 
 					// Reload the left hand side of the diff editor to show the up to date version and inform the user that he has to redo the action
-					return (<TextResourceEditorModel>diffModel.originalModel).load().then(() => {
+					return conflictInput.originalInput.resolve(true).then(() => {
 						this.messagesToHide.push(this.messageService.show(Severity.Info, nls.localize('conflictingFileHasChanged', "The content of the file on disk has changed and the left hand side of the compare editor was refreshed. Please review and resolve again.")));
 					});
 				}
