@@ -142,7 +142,7 @@ export class AbstractKeybindingService {
 		throw new Error('Not implemented');
 	}
 
-	public executeCommand(commandId: string, args:any): void {
+	public executeCommand(commandId: string, args:any): TPromise<any> {
 		throw new Error('Not implemented');
 	}
 }
@@ -309,9 +309,7 @@ export class KeybindingService extends AbstractKeybindingService implements IKey
 			args.context = contextValue;
 		}
 
-		return this._invokeHandler(commandId, args).done(undefined, err => {
-			this._messageService.show(Severity.Warning, err);
-		});
+		return this._invokeHandler(commandId, args);
 	}
 }
 
@@ -356,8 +354,8 @@ class ScopedKeybindingService extends AbstractKeybindingService {
 		this._parent.disposeContext(contextId);
 	}
 
-	public executeCommand(commandId: string, args:any): void {
-		this._parent.executeCommand(commandId, args);
+	public executeCommand(commandId: string, args:any): TPromise<any> {
+		return this._parent.executeCommand(commandId, args);
 	}
 }
 

@@ -5,6 +5,7 @@
 
 import strings = require('vs/base/common/strings');
 import arrays = require('vs/base/common/arrays');
+import {HTML_TAGS} from 'vs/languages/html/common/htmlTagSpecifications';
 
 var emptyElements:string[] = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'menuitem', 'meta', 'param', 'source', 'track', 'wbr'];
 
@@ -13,134 +14,12 @@ export function isEmptyElement(e: string) : boolean {
 }
 
 export interface IHTMLTagProvider {
-	collectTags(collector: (tag:string) => void): void;
+	collectTags(collector: (tag:string, label:string) => void): void;
 	collectAttributes(tag: string, collector: (attribute: string, type: string) => void): void;
 	collectValues(tag: string, attribute: string, collector: (value: string) => void): void;
 }
 
 export function getHTML5TagProvider(): IHTMLTagProvider {
-	var none: string[] = [];
-
-	var html5Tags : { [tag:string]: string[]} = {
-		html: ['manifest'],
-		head: none,
-		title: none,
-		noscript: none,
-		main: none,
-		section: none,
-		nav: none,
-		article: none,
-		aside: none,
-		h1: none,
-		h2: none,
-		h3: none,
-		h4: none,
-		h5: none,
-		h6: none,
-		hgroup: none,
-		header: none,
-		footer: none,
-		address: none,
-		p: none,
-		hr: none,
-		pre: none,
-		blockquote: ['cite'],
-		ol: ['reversed:v', 'start', 'type:lt'],
-		ul: none,
-		li: ['value'],
-		dl: none,
-		dt: none,
-		dd: none,
-		figure: none,
-		figcaption: none,
-		div: none,
-		a: ['href', 'target', 'download', 'ping', 'rel', 'hreflang', 'type'],
-		em: none,
-		strong: none,
-		small: none,
-		s: none,
-		cite: none,
-		q: ['cite'],
-		dfn: none,
-		abbr: none,
-		data: ['value'],
-		time: ['datetime'],
-		code: none,
-		var: none,
-		samp: none,
-		kbd: none,
-		sub: none,
-		sup: none,
-		i: none,
-		b: none,
-		u: none,
-		mark: none,
-		ruby: none,
-		rb: none,
-		rp: none,
-		rt: none,
-		rtc: none,
-		bdi: none,
-		bdo: none,
-		span: none,
-		br: none,
-		wbr: none,
-		ins: ['cite', 'datetime'],
-		del: ['cite', 'datetime'],
-		img: ['alt', 'src', 'srcset', 'crossorigin:xo', 'usemap', 'ismap:v', 'width', 'height'],
-		iframe: ['src', 'srcdoc', 'name', 'sandbox:sb', 'seamless:v', 'allowfullscreen:v', 'width', 'height'],
-		embed: ['src', 'type', 'width', 'height'],
-		object: ['data', 'type', 'typemustmatch:v', 'name', 'usemap', 'form', 'width', 'height'],
-		param: ['name', 'value'],
-		video: ['src', 'crossorigin:xo', 'poster', 'preload:pl', 'autoplay:v', 'mediagroup', 'loop:v', 'muted:v', 'controls:v', 'width', 'height'],
-		audio: ['src', 'crossorigin:xo', 'preload:pl', 'autoplay:v', 'mediagroup', 'loop:v', 'muted:v', 'controls:v'],
-		source: ['src', 'type'],
-		track: ['default:v', 'kind:tk', 'label', 'src', 'srclang'],
-		canvas: ['width', 'height'],
-		map: ['name'],
-		area: ['alt', 'coords', 'shape:sh', 'href', 'target', 'download', 'ping', 'rel', 'hreflang', 'type'],
-		base: ['href', 'target'],
-		link: ['href', 'crossorigin:xo', 'rel', 'media', 'hreflang', 'type', 'sizes'],
-		meta: ['name', 'http-equiv', 'content', 'charset'],
-		style: ['media', 'nonce', 'type', 'scoped:v'],
-		script: ['src', 'type', 'charset', 'async:v', 'defer:v', 'crossorigin:xo', 'nonce'],
-		template: none,
-		body: ['onafterprint', 'onbeforeprint', 'onbeforeunload', 'onhashchange', 'onlanguagechange', 'onmessage', 'onoffline', 'ononline', 'onpagehide',
-			'onpageshow', 'onpopstate', 'onstorage', 'onunload'],
-		table: ['sortable:v', 'border'],
-		caption: none,
-		colgroup: ['span'],
-		col: ['span'],
-		tbody: none,
-		thead: none,
-		tfoot: none,
-		tr: none,
-		td: ['colspan', 'rowspan', 'headers'],
-		th: ['colspan', 'rowspan', 'headers', 'scope:s', 'sorted', 'abbr'],
-		form: ['accept-charset', 'action', 'autocomplete:o', 'enctype:et', 'method:m', 'name', 'novalidate:v', 'target'],
-		fieldset: ['disabled:v', 'form', 'name'],
-		legend: none,
-		label: ['form', 'for'],
-		input: ['accept', 'alt', 'autocomplete:o', 'autofocus:v', 'checked:v', 'dirname', 'disabled:v', 'form', 'formaction', 'formenctype:et',
-			'formmethod:fm', 'formnovalidate:v', 'formtarget', 'height', 'inputmode:im', 'list', 'max', 'maxlength', 'min', 'minlength', 'multiple:v', 'name',
-			'pattern', 'placeholder', 'readonly:v', 'required:v', 'size', 'src', 'step', 'type:t', 'value', 'width'],
-		button: ['autofocus:v', 'disabled:v', 'form', 'formaction', 'formenctype:et', 'formmethod:fm', 'formnovalidate:v', 'formtarget', 'name', 'type:bt', 'value'],
-		select: ['autocomplete:o', 'autofocus:v', 'disabled:v', 'form', 'multiple:v', 'name', 'required:v', 'size'],
-		datalist: none,
-		optgroup: ['disabled:v', 'label'],
-		option: ['disabled:v', 'label', 'selected:v', 'value'],
-		textarea: ['autocomplete:o', 'autofocus:v', 'cols', 'dirname', 'disabled:v', 'form', 'inputmode:im', 'maxlength', 'minlength', 'name', 'placeholder', 'readonly:v', 'required:v', 'rows', 'wrap:w'],
-		keygen: ['autofocus:v', 'challenge', 'disabled:v', 'form', 'keytype', 'name'],
-		output: ['for', 'form', 'name'],
-		progress: ['value', 'max'],
-		meter: ['value', 'min', 'max', 'low', 'high', 'optimum'],
-		details: ['open:v'],
-		summary: none,
-		menu: ['type:mt', 'label'],
-		menuitem: ['type:mit', 'label', 'icon', 'disabled:v', 'checked:v', 'radiogroup', 'default:v', 'command'],
-		dialog: ['open:v']
-	};
-
 	var globalAttributes = [
 		'aria-activedescendant', 'aria-atomic:b', 'aria-autocomplete:autocomplete', 'aria-busy:b', 'aria-checked:tristate', 'aria-colcount', 'aria-colindex', 'aria-colspan', 'aria-controls', 'aria-current:current', 'aria-describedat',
 		'aria-describedby', 'aria-disabled:b', 'aria-dropeffect:dropeffect', 'aria-errormessage', 'aria-expanded:u', 'aria-flowto', 'aria-grabbed:u', 'aria-haspopup:b', 'aria-hidden:b', 'aria-invalid:invalid', 'aria-kbdshortcuts',
@@ -193,9 +72,9 @@ export function getHTML5TagProvider(): IHTMLTagProvider {
 	};
 
 	return {
-		collectTags: (collector: (tag: string) => void) => {
-			for (var tag in html5Tags) {
-				collector(tag);
+		collectTags: (collector: (tag: string, label: string) => void) => {
+			for (var tag in HTML_TAGS) {
+				collector(tag, HTML_TAGS[tag].label);
 			}
 		},
 		collectAttributes: (tag: string, collector: (attribute: string, type: string) => void) => {
@@ -207,7 +86,7 @@ export function getHTML5TagProvider(): IHTMLTagProvider {
 				collector(handler, 'event');
 			});
 			if (tag) {
-				var attributes = html5Tags[tag];
+				var attributes = HTML_TAGS[tag].attributes;
 				if (attributes) {
 					attributes.forEach(attr => {
 						var segments = attr.split(':');
@@ -233,7 +112,7 @@ export function getHTML5TagProvider(): IHTMLTagProvider {
 					}
 				});
 			};
-			var attributes = html5Tags[tag];
+			var attributes = HTML_TAGS[tag].attributes;
 			if (attributes) {
 				processAttributes(attributes);
 			}

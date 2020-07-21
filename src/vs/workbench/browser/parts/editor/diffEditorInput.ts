@@ -13,7 +13,6 @@ import {BaseTextEditorModel} from 'vs/workbench/browser/parts/editor/textEditorM
 import {DiffEditorModel} from 'vs/workbench/browser/parts/editor/diffEditorModel';
 import {TextDiffEditor} from 'vs/workbench/browser/parts/editor/textDiffEditor';
 import {TextDiffEditorModel} from 'vs/workbench/browser/parts/editor/textDiffEditorModel';
-import {ResourceEditorInput} from 'vs/workbench/browser/parts/editor/resourceEditorInput';
 import {BinaryResourceDiffEditor} from 'vs/workbench/browser/parts/editor/binaryDiffEditor';
 
 /**
@@ -139,16 +138,9 @@ export class DiffEditorInput extends BaseDiffEditorInput {
 		let mime: string;
 
 		// Find mime from instancesof ResourceEditorInput
-		if (input instanceof ResourceEditorInput) {
-			mime = (<ResourceEditorInput>input).getMime();
-		}
-
-		// Find mime by checking for IFileEditorInput implementors
-		else {
-			let fileInput = <IFileEditorInput>(<any>input);
-			if (types.isFunction(fileInput.getMime)) {
-				mime = fileInput.getMime();
-			}
+		let fileInput = <IFileEditorInput>(<any>input);
+		if (types.isFunction(fileInput.getMime)) {
+			mime = fileInput.getMime();
 		}
 
 		return mime && isBinaryMime(mime);
