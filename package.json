@@ -33,7 +33,7 @@
   "devDependencies": {
     "async": "^1.4.0",
     "azure-storage": "^0.3.1",
-    "clean-css": "3.4.6",
+    "clean-css": "4.1.11",
     "clone": "^1.0.2",
     "debounce": "^1.0.0",
     "event-stream": "^3.1.7",
